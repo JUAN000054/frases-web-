@@ -1,0 +1,157 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;500;700&display=swap');
+
+:root {
+  --rosa: #ff9a9e;
+  --rosa-claro: #ff0808;
+  --texto: #fa0707ef;
+  --blanco: #f707e3ee;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  position: relative;
+  background-size: auto;
+  background-position: auto;
+  background-attachment: fixed;
+}
+
+/* Capa oscura para contraste */
+.app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 8, 238, 0.35);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+.app > * {
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  color: rgb(220, 32, 245);
+  font-size: 48px;
+  margin-bottom: 12px;
+  text-shadow: 0 3px 6px rgba(14, 192, 216, 0.4);
+}
+
+/* Botones elegantes */
+.btn {
+  margin: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: #f50505;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Frase actual destacada */
+.frase-card {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(255, 105, 180, 0.7);
+  padding: 16px;
+  border-radius: 12px;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  animation: aparecer 0.6s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Lista de frases */
+.lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.lista .frase-card {
+  font-size: 16px;
+  font-weight: normal;
+  background: rgba(255,255,255,0.85);
+  color: var(--texto);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Carta romántica */
+.carta-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+  padding: 0 16px;
+}
+
+.carta {
+  background: linear-gradient(135deg, #ffe0f0, #fff);
+  border: 2px solid #ff99cc;
+  border-radius: 14px;
+  padding: 20px;
+  max-width: 680px;
+  box-shadow: 0 10px 24px rgba(255, 153, 204, 0.35);
+  animation: carta-aparece 650ms ease-out;
+}
+
+.carta h2 {
+  color: #ff3399;
+  font-family: "Georgia", "Times New Roman", serif;
+  text-align: center;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.carta p {
+  font-size: 18px;
+  line-height: 1.65;
+  color: #111111d0;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.firma {
+  margin-top: 16px;
+  font-style: italic;
+  color: #ff66aa;
+  text-align: right;
+}
+
+@keyframes carta-aparece {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
