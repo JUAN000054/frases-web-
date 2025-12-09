@@ -7,68 +7,68 @@ const photos = [
   {
     id: 1,
     src: '/images/foto1.jpg',
-    carta: 'Descubri un amor que no supe que tenia dentro hasta que te conoci que exploto y me lleno de los sentimientos mas lindos 💖',
-    musica: '/music/song1.mp3'
+    carta: 'Descubrí un amor que no supe que tenía dentro hasta que te conocí 💖',
+    musica: '/music/miamor.mp3'
   },
   {
     id: 2,
     src: '/images/foto2.jpg',
     carta: 'Cada día te amo más 🌹',
-    musica: '/music/song2.mp3'
+    musica: '/music/micorazon.mp3'
   },
   {
     id: 3,
     src: '/images/foto3.jpg',
     carta: 'Siempre serás mi inspiración ✨',
-    musica: '/music/song3.mp3'
+    musica: '/music/mifuturo.mp3'
   },
   {
     id: 4,
     src: '/images/foto4.jpg',
     carta: 'Tu sonrisa ilumina mi mundo 🌞',
-    musica: '/music/song4.mp3'
+    musica: '/music/miluz.mp3'
   },
   {
     id: 5,
     src: '/images/foto5.jpg',
-    carta: 'Eres lo que nunca busque tampoco espere pero lo que siempre soñe tener 💕',
-    musica: '/music/song5.mp3'
+    carta: 'Eres lo que nunca busqué, tampoco esperé, pero lo que siempre soñé tener 💕',
+    musica: '/music/mimundo.mp3'
   },
   {
     id: 6,
     src: '/images/foto6.jpg',
-    carta: 'Cada momento contigo es una bendicion de Dios ✨',
-    musica: '/music/song6.mp3'
+    carta: 'Cada momento contigo es una bendición de Dios ✨',
+    musica: '/music/minovia.mp3'
   },
   {
     id: 7,
     src: '/images/foto7.jpg',
     carta: 'Te pienso en cada instante 🌹',
-    musica: '/music/song7.mp3'
+    musica: '/music/mireina.mp3'
   },
   {
     id: 8,
     src: '/images/foto8.jpg',
     carta: 'Eres mi sueño hecho realidad 💌',
-    musica: '/music/song8.mp3'
+    musica: '/music/misueno.mp3'
   },
   {
     id: 9,
     src: '/images/foto9.jpg',
     carta: 'Mi corazón late por ti ❤️',
-    musica: '/music/song9.mp3'
+    musica: '/music/miuniverso.mp3'
   },
   {
     id: 10,
     src: '/images/foto10.jpg',
     carta: 'Siempre juntos, siempre felices, siempre con amor 🌈',
-    musica: '/music/song10.mp3'
+    musica: '/music/mivida.mp3'
   },
   {
     id: 11,
     src: '/images/foto11.jpg',
     carta: 'Nuestro amor es infinito 🌌',
-    musica: '/music/song11.mp3'
+    musica: '/music/minina.mp3'
   }
 ];
 
