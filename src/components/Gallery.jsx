@@ -31,7 +31,7 @@ const photos = [
   {
     id: 5,
     src: '/images/foto5.jpg',
-    carta: 'Eres lo que nunca busque tampoco espere pero lo que siempre soñe tener le doy gracias a Dios por que hayas llegado a mi vida 💕',
+    carta: 'Eres lo que nunca busque tampoco espere pero lo que siempre soñe tener 💕',
     musica: '/music/song5.mp3'
   },
   {
@@ -75,6 +75,28 @@ const photos = [
 function Gallery() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
+  const handlePhotoClick = (photo) => {
+    setSelectedPhoto(photo);
+
+    // 🔑 Reproduce la música directamente en el click
+    const audio = new Audio(photo.musica);
+    audio.volume = 0;
+    audio.play().then(() => {
+      // Fade-in manual
+      let vol = 0;
+      const fadeInterval = setInterval(() => {
+        if (vol < 1) {
+          vol += 0.05;
+          audio.volume = Math.min(vol, 1);
+        } else {
+          clearInterval(fadeInterval);
+        }
+      }, 200);
+    }).catch(err => {
+      console.log("Bloqueo de autoplay:", err);
+    });
+  };
+
   return (
     <div className="gallery">
       {photos.map((photo) => (
@@ -83,7 +105,7 @@ function Gallery() {
           src={photo.src}
           alt="foto secreta"
           className="gallery-photo"
-          onClick={() => setSelectedPhoto(photo)} // el click abre el modal y dispara la música
+          onClick={() => handlePhotoClick(photo)}
         />
       ))}
 
