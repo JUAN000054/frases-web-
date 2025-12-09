@@ -2,7 +2,7 @@ import './Gallery.css';
 import React, { useState } from 'react';
 import PhotoModal from './PhotoModal';
 
-// Array con todas las fotos, cartas y músicas
+// Array con todas las fotos, cartas y musicas
 const photos = [
   {
     id: 1,

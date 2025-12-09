@@ -14,7 +14,7 @@ const PhotoModal = ({ photo, onClose }) => {
         });
       }
 
-      // Fade-in
+      // 🎶 Fade-in
       let vol = 0;
       const fadeInterval = setInterval(() => {
         if (vol < 1) {
@@ -46,7 +46,7 @@ const PhotoModal = ({ photo, onClose }) => {
           src={photo.musica} 
           autoPlay 
           loop 
-          controls  // ✅ agrega controles para verificar que el archivo carga
+          controls 
         />
 
         <button className="close-btn" onClick={onClose}>Cerrar ✖</button>
