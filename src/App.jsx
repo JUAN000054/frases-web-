@@ -1,3 +1,4 @@
+import Gallery from './components/Gallery';
 import { useRef, useState } from "react";
 import "./App.css";
 
@@ -97,6 +98,9 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* 🎨 Galería secreta */}
+      <Gallery />
 
       {/* Reproductor de audio oculto */}
       <audio ref={audioRef} src="/tu-poeta.mp3" loop />
