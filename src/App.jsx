@@ -8,6 +8,7 @@ function App() {
   const [indiceFrase, setIndiceFrase] = useState(null);
 
   const frases = [
+    "HAGAMOS QUE ESTO FUNCIONE Y NO POR QUE SEA FACIL EHH, SINO POR QUE VALE LA PENA 💘",
     "Tu sonrisa ilumina mis días ✨",
     "Eres mi razón de ser 💕",
     "Cada momento contigo es un regalo 🎁",
@@ -83,15 +84,16 @@ function App() {
               de todo lo que siento por vos.
             </p>
             <p>
-              Gracias por existir, por sonreír, por hacer que cada día valga la pena.
-              Te amo con cada latido y cada sueño que tengo.
-              TE AMO...Porque eres esa persona que siempre soñe tener a mi lado , 
-              esa persona con la cual me veo toda la vida.
-              Amo cada parte de ti, amo tu forma de ser, tu forma de pensar, amo la forma 
-              en la que me miras, pero sobre todo amo la forma en la que encajamos tan bien.
-              JAMAS ME CANSARE DE DECIRTE LO MUCHO QUE TE AMO Y LO ESPECIAL QUE ERES PARA MI...
+              Mi intencion es hacerte saber que no tengo ojos para otra persona, que eres unica,
+              que me importas y no para un momento sino para una relacion sana y estable.
+              Que eres la unica persona que me alegra con un bonito con un bonito mensaje, que admiro
+              verte todo el tiempo , que me siento en otro mundo cuando me abrazas y para mi eres perfecta 
+              en todos los sentidos y te quiero asi y no me importa los problemas por superar porque siempre ,
+              siempre estare ahi apoyandote y ayudandote porque quiero , nunca lo olvides mi amor , quiero 
+              verte triunfar en todo lo que te propongas mi vida, pero sobre todo mi amor, en verte feliz.
+              TE AMO SEÑORITA 
             </p>
-            <p className="firma">Con todo mi amor, Juan ✨</p>
+            <p className="firma">Con todo el amor del mundo , Juan ✨</p>
           </div>
         </div>
       )}
@@ -100,7 +102,7 @@ function App() {
       <audio ref={audioRef} src="/tu-poeta.mp3" loop />
 
       <footer>
-        <p>Hecho con mucho amor por Juan ✨</p>
+        <p>HECHO CON TODO EL AMOR DEL UNIVERSO POR TU POETA✨</p>
       </footer>
     </div>
   );
