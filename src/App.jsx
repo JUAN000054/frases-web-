@@ -7,6 +7,7 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showLetter, setShowLetter] = useState(false);
   const [indiceFrase, setIndiceFrase] = useState(null);
+  const [showGallery, setShowGallery] = useState(false); // ✅ nuevo estado
 
   const frases = [
     "HAGAMOS QUE ESTO FUNCIONE Y NO POR QUE SEA FACIL EHH, SINO POR QUE VALE LA PENA 💘",
@@ -99,8 +100,13 @@ function App() {
         </div>
       )}
 
-      {/* 🎨 Galería secreta */}
-      <Gallery />
+      {/* 📁 Botón para mostrar/ocultar la galería secreta */}
+      <button className="btn" onClick={() => setShowGallery(!showGallery)}>
+        {showGallery ? "Cerrar archivo secreto 📁" : "Abrir archivo secreto 📁"}
+      </button>
+
+      {/* Galería secreta */}
+      {showGallery && <Gallery />}
 
       {/* Reproductor de audio oculto */}
       <audio ref={audioRef} src="/tu-poeta.mp3" loop />

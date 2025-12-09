@@ -155,3 +155,23 @@ h1 {
     filter: blur(0);
   }
 }
+/* Estilo especial para el botón del archivo secreto */
+.btn-secret {
+  background-color: #222;       /* Fondo oscuro misterioso */
+  color: #ffd700;               /* Dorado para resaltar */
+  font-size: 1.2rem;            /* Un poco más grande */
+  padding: 12px 20px;
+  border: 2px solid #ffd700;    /* Borde dorado */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+/* Efecto al pasar el mouse */
+.btn-secret:hover {
+  background-color: #444;
+  color: #fff;
+  border-color: #fff;
+  transform: scale(1.05);       /* Se agranda un poquito */
+}
