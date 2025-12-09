@@ -42,9 +42,8 @@ const PhotoModal = ({ photo, onClose }) => {
 
         {/* Botón para iniciar la música */}
         <button className="play-btn" onClick={handlePlayMusic}>
-        💖 Mi cora
-         </button>
-
+          💖 Mi cora
+        </button>
 
         <button className="close-btn" onClick={handleClose}>Cerrar ✖</button>
       </div>
