@@ -7,6 +7,8 @@ const PhotoModal = ({ photo, onClose }) => {
     if (audioRef.current) {
       const audio = audioRef.current;
       audio.volume = 0;
+
+      // Reproduce al abrir el modal (ya hubo un click en la foto)
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch((err) => {
@@ -44,7 +46,6 @@ const PhotoModal = ({ photo, onClose }) => {
         <audio 
           ref={audioRef} 
           src={photo.musica} 
-          autoPlay 
           loop 
           controls 
         />

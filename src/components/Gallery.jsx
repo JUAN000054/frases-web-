@@ -2,12 +2,12 @@ import './Gallery.css';
 import React, { useState } from 'react';
 import PhotoModal from './PhotoModal';
 
-// Array con todas las fotos, cartas y musicas
+// Array con todas las fotos, cartas y músicas
 const photos = [
   {
     id: 1,
     src: '/images/foto1.jpg',
-    carta: 'Descubri un amor que no supe que tenia dentro hasta que te conoci que exploto y me lleno de los sentimientos mas lindos  💖',
+    carta: 'Descubri un amor que no supe que tenia dentro hasta que te conoci que exploto y me lleno de los sentimientos mas lindos 💖',
     musica: '/music/song1.mp3'
   },
   {
@@ -37,7 +37,7 @@ const photos = [
   {
     id: 6,
     src: '/images/foto6.jpg',
-    carta: 'Cada momento contigo es una bendicion e Dios  ✨',
+    carta: 'Cada momento contigo es una bendicion de Dios ✨',
     musica: '/music/song6.mp3'
   },
   {
@@ -61,7 +61,7 @@ const photos = [
   {
     id: 10,
     src: '/images/foto10.jpg',
-    carta: 'Siempre juntos, siempre felices , siempre con amor🌈',
+    carta: 'Siempre juntos, siempre felices, siempre con amor 🌈',
     musica: '/music/song10.mp3'
   },
   {
@@ -83,7 +83,7 @@ function Gallery() {
           src={photo.src}
           alt="foto secreta"
           className="gallery-photo"
-          onClick={() => setSelectedPhoto(photo)}
+          onClick={() => setSelectedPhoto(photo)} // el click abre el modal y dispara la música
         />
       ))}
 
