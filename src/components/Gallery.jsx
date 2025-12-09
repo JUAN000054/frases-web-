@@ -75,28 +75,6 @@ const photos = [
 function Gallery() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  const handlePhotoClick = (photo) => {
-    setSelectedPhoto(photo);
-
-    // 🔑 Reproduce la música directamente en el click
-    const audio = new Audio(photo.musica);
-    audio.volume = 0;
-    audio.play().then(() => {
-      // Fade-in manual
-      let vol = 0;
-      const fadeInterval = setInterval(() => {
-        if (vol < 1) {
-          vol += 0.05;
-          audio.volume = Math.min(vol, 1);
-        } else {
-          clearInterval(fadeInterval);
-        }
-      }, 200);
-    }).catch(err => {
-      console.log("Bloqueo de autoplay:", err);
-    });
-  };
-
   return (
     <div className="gallery">
       {photos.map((photo) => (
@@ -105,7 +83,7 @@ function Gallery() {
           src={photo.src}
           alt="foto secreta"
           className="gallery-photo"
-          onClick={() => handlePhotoClick(photo)}
+          onClick={() => setSelectedPhoto(photo)}
         />
       ))}
 
