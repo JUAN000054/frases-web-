@@ -7,7 +7,7 @@ const photos = [
   {
     id: 1,
     src: '/images/foto1.jpg',
-    carta: 'Mi primera carta para vos 💖',
+    carta: 'Descubri un amor que no supe que tenia dentro hasta que te conoci que exploto y me lleno de los sentimientos mas lindos  💖',
     musica: '/music/song1.mp3'
   },
   {
@@ -31,13 +31,13 @@ const photos = [
   {
     id: 5,
     src: '/images/foto5.jpg',
-    carta: 'Eres mi razón de ser 💕',
+    carta: 'Eres lo que nunca busque tampoco espere pero lo que siempre soñe tener le doy gracias a Dios por que hayas llegado a mi vida 💕',
     musica: '/music/song5.mp3'
   },
   {
     id: 6,
     src: '/images/foto6.jpg',
-    carta: 'Cada momento contigo es mágico ✨',
+    carta: 'Cada momento contigo es una bendicion e Dios  ✨',
     musica: '/music/song6.mp3'
   },
   {
@@ -55,13 +55,13 @@ const photos = [
   {
     id: 9,
     src: '/images/foto9.jpg',
-    carta: 'Mi corazón late por vos ❤️',
+    carta: 'Mi corazón late por ti ❤️',
     musica: '/music/song9.mp3'
   },
   {
     id: 10,
     src: '/images/foto10.jpg',
-    carta: 'Siempre juntos, siempre felices 🌈',
+    carta: 'Siempre juntos, siempre felices , siempre con amor🌈',
     musica: '/music/song10.mp3'
   },
   {
