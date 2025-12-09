@@ -37,7 +37,7 @@ const PhotoModal = ({ photo, onClose }) => {
         <img src={photo.src} alt="foto ampliada" className="modal-photo" />
         <p className="modal-carta">{photo.carta}</p>
 
-        {/* 🎵 Reproductor de música sin controles visibles */}
+        {/* 🎵 Reproductor de música sin controles */}
         <audio ref={audioRef} src={photo.musica} loop />
 
         {/* Botón para iniciar la música */}
