@@ -155,6 +155,7 @@ h1 {
     filter: blur(0);
   }
 }
+
 /* Estilo especial para el botón del archivo secreto */
 .btn-secret {
   background-color: #222;       /* Fondo oscuro misterioso */
@@ -175,6 +176,7 @@ h1 {
   border-color: #fff;
   transform: scale(1.05);       /* Se agranda un poquito */
 }
+
 /* 🌹 Última carta fija arriba a la izquierda */
 .ultima-carta-fija {
   position: absolute;
@@ -200,4 +202,29 @@ h1 {
 .ultima-carta-fija p {
   font-size: 1.1rem;
   line-height: 1.4;
+}
+
+/* 🌹 Estilo para la carta larga dentro del modal */
+.modal-carta.ultima-carta {
+  max-height: 300px;       /* límite de altura dentro del modal */
+  overflow-y: auto;        /* activa scroll vertical si el texto es largo */
+  padding-right: 10px;     /* espacio para que el scroll no tape texto */
+  line-height: 1.6;
+  font-size: 1.1rem;
+  text-align: left;
+  white-space: pre-line;   /* respeta saltos de línea en el texto */
+  scrollbar-width: thin;   /* scroll fino en Firefox */
+  scrollbar-color: #ff4d6d #111; /* colores del scroll */
+}
+
+/* Scroll elegante en Chrome/Edge */
+.modal-carta.ultima-carta::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-carta.ultima-carta::-webkit-scrollbar-track {
+  background: #111;
+}
+.modal-carta.ultima-carta::-webkit-scrollbar-thumb {
+  background-color: #ff4d6d;
+  border-radius: 4px;
 }
