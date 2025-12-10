@@ -175,3 +175,29 @@ h1 {
   border-color: #fff;
   transform: scale(1.05);       /* Se agranda un poquito */
 }
+/* 🌹 Última carta fija arriba a la izquierda */
+.ultima-carta-fija {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: black;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 300px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+}
+
+.ultima-carta-fija h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  color: #ff4d6d;
+  text-shadow: 0 2px 6px rgba(255, 0, 0, 0.5);
+}
+
+.ultima-carta-fija p {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}

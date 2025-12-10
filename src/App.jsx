@@ -51,6 +51,15 @@ function App() {
       style={{ backgroundImage: "url('/fondo.jpg')" }} // ✅ fondo intacto
     >
       <h1>Para vos, mi amor 💕</h1>
+      <div className="ultima-carta-fija">
+  <h2>🌹 Mi Última Carta 🌹</h2>
+  <p>
+    Aunque nuestros caminos se separen, siempre te recordaré con amor y gratitud.  
+    Que tus sueños se cumplan y tu luz nunca se apague.
+  </p>
+  <audio src="/music/paginasdeamigos.mp3" autoPlay loop />
+</div>
+
 
       {/* Botones de frases */}
       <button className="btn" onClick={mostrarFraseAleatoria}>
