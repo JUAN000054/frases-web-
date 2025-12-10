@@ -7,7 +7,6 @@ const PhotoModal = ({ photo, onClose }) => {
   useEffect(() => {
     if (photo.id === 12 && audioRef.current) {
       audioRef.current.play().catch(() => {
-        // Si el navegador bloquea autoplay, queda el botón para reproducir
         console.log("Autoplay bloqueado, usar botón 💖 Mi cora");
       });
     }
@@ -19,7 +18,6 @@ const PhotoModal = ({ photo, onClose }) => {
       audioRef.current.currentTime = 0;
     }
 
-    // 🌹 Si es la última carta, disparar lluvia de rosas
     if (photo.id === 12) {
       crearLluviaDeRosas();
     }
@@ -52,10 +50,8 @@ const PhotoModal = ({ photo, onClose }) => {
           {photo.carta}
         </div>
 
-        {/* 🎵 Audio */}
         <audio ref={audioRef} src={photo.musica} loop />
 
-        {/* Botón para reproducir manualmente */}
         <button className="play-btn" onClick={() => audioRef.current?.play()}>
           💖 Mi cora
         </button>

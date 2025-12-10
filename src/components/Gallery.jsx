@@ -5,7 +5,7 @@ import PhotoModal from './PhotoModal';
 function Gallery() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  // Última carta destacada
+  // Última carta integrada como una foto más
   const ultimaCarta = {
     id: 12,
     src: '/images/foto12.jpg',
@@ -18,7 +18,7 @@ function Gallery() {
     musica: '/music/paginasdeamigos.mp3'
   };
 
-  // Tus fotos normales
+  // Tus fotos normales + última carta incluida
   const photos = [
     { id: 1, src: '/images/foto1.jpg', carta: 'Descubrí un amor que no supe que tenía dentro hasta que te conocí 💖', musica: '/music/miamor.mp3' },
     { id: 2, src: '/images/foto2.jpg', carta: 'Cada día te amo más 🌹', musica: '/music/micorazon.mp3' },
@@ -30,21 +30,13 @@ function Gallery() {
     { id: 8, src: '/images/foto8.jpg', carta: 'Eres mi sueño hecho realidad 💌', musica: '/music/misueno.mp3' },
     { id: 9, src: '/images/foto9.jpg', carta: 'Mi corazón late por ti ❤️', musica: '/music/miuniverso.mp3' },
     { id: 10, src: '/images/foto10.jpg', carta: 'Siempre juntos, siempre felices, siempre con amor 🌈', musica: '/music/mivida.mp3' },
-    { id: 11, src: '/images/foto11.jpg', carta: 'Nuestro amor es infinito 🌌', musica: '/music/minina.mp3' }
+    { id: 11, src: '/images/foto11.jpg', carta: 'Nuestro amor es infinito 🌌', musica: '/music/minina.mp3' },
+    ultimaCarta // 👈 ahora forma parte de la galería
   ];
 
   return (
     <div>
-      {/* Bloque especial arriba a la izquierda */}
-      <div 
-        className="ultima-carta-destacada" 
-        onClick={() => setSelectedPhoto(ultimaCarta)}
-      >
-        <h2>🌹 Mi Última Carta 🌹</h2>
-        <p>Haz clic aquí para leerla</p>
-      </div>
-
-      {/* Galería normal */}
+      {/* Galería normal con todas las fotos */}
       <div className="gallery">
         {photos.map((photo) => (
           <img
