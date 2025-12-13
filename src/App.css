@@ -19,8 +19,8 @@
   align-items: center;
   padding: 40px 20px;
   position: relative;
-  background-size: auto;
-  background-position: auto;
+  background-size: cover;
+  background-position: center;
   background-attachment: fixed;
 }
 
