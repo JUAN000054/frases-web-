@@ -188,14 +188,3 @@ h1 {
   scrollbar-width: thin;
   scrollbar-color: #ff4d6d #111;
 }
-
-.modal-carta.ultima-carta::-webkit-scrollbar {
-  width: 6px;
-}
-.modal-carta.ultima-carta::-webkit-scrollbar-track {
-  background: #111;
-}
-.modal-carta.ultima-carta::-webkit-scrollbar-thumb {
-  background-color: #ff4d6d;
-  border-radius: 4px;
-}

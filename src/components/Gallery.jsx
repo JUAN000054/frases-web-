@@ -31,7 +31,6 @@ function Gallery() {
     { id: 9, src: '/images/foto9.jpg', carta: 'Mi corazón late por ti ❤️', musica: '/music/miuniverso.mp3' },
     { id: 10, src: '/images/foto10.jpg', carta: 'Siempre juntos, siempre felices, siempre con amor 🌈', musica: '/music/mivida.mp3' },
     { id: 11, src: '/images/foto11.jpg', carta: 'Nuestro amor es infinito 🌌', musica: '/music/minina.mp3' },
-    ultimaCarta // 👈 ahora forma parte de la galería
   ];
 
   return (
