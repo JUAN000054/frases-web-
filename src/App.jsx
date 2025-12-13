@@ -52,7 +52,6 @@ function App() {
     >
       <h1>Para vos, mi amor 💕</h1>
       <div className="ultima-carta-fija">
-  <h2>🌹 Mi Última Carta 🌹</h2>
   <p>
     Aunque nuestros caminos se separen, siempre te recordaré con amor y gratitud.  
     Que tus sueños se cumplan y tu luz nunca se apague.
