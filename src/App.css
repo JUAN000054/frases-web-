@@ -381,3 +381,61 @@ footer {
   font-weight: bold;
   text-align: center;
 }
+/* Reproductor de audio romántico */
+audio {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  display: block;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: #ff1493; /* rosa intenso */
+  color: black;
+}
+
+/* Botones internos del reproductor */
+audio::-webkit-media-controls-panel {
+  background-color: #ff1493; /* rosa intenso */
+  color: black;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-pause-button,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: black;
+  background-color: #ff1493;
+}
+
+/* Barra de progreso */
+audio::-webkit-media-controls-timeline {
+  background-color: black;
+  border-radius: 5px;
+}
+/* Botón Activar sonido romántico */
+.boton-activar-sonido {
+  background-color: #ff1493; /* rosa intenso */
+  color: black;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  border: 2px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Efecto hover */
+.boton-activar-sonido:hover {
+  background-color: black;
+  color: #ff1493;
+  transform: scale(1.05);
+}
+
+/* Efecto al hacer click */
+.boton-activar-sonido:active {
+  transform: scale(0.95);
+}
