@@ -357,3 +357,22 @@ footer {
 .btn-cora:hover {
   background: #e63e5c;
 }
+.app {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+}
+
+.btn {
+  margin: 6px;
+  padding: 8px 14px;
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.frase-

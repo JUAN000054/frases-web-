@@ -60,7 +60,6 @@ function App() {
 
   const enableAudio = () => {
     if (audioRef.current) {
-      // Intenta reproducir un silencio para habilitar permisos
       audioRef.current.play().catch(() => {});
     }
     setAudioEnabled(true);
@@ -159,8 +158,8 @@ function App() {
         </div>
       )}
 
-      {/* Reproductor de audio único (oculto pero presente en el DOM) */}
-      <audio ref={audioRef} src={currentSrc} controls style={{ display: "none" }} />
+      {/* Reproductor visible para desbloquear audio en móviles */}
+      <audio ref={audioRef} src={currentSrc} controls />
 
       <footer>
         <p>HECHO CON TODO EL AMOR DEL UNIVERSO POR TU POETA✨</p>
