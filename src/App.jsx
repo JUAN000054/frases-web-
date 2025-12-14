@@ -8,7 +8,7 @@ function App() {
   const [showLetter, setShowLetter] = useState(false);
   const [indiceFrase, setIndiceFrase] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
-  const [currentAudio, setCurrentAudio] = useState(null);
+  const [currentSrc, setCurrentSrc] = useState(null);
 
   const frases = [
     "HAGAMOS QUE ESTO FUNCIONE Y NO POR QUE SEA FACIL EHH, SINO POR QUE VALE LA PENA 💘",
@@ -46,16 +46,15 @@ function App() {
     }
   };
 
+  // ✅ Reproducir música al apretar "MI CORA ❤️"
   const playPhotoMusic = (src) => {
-    if (currentAudio) {
-      currentAudio.pause();
-    }
-    const newAudio = new Audio(src);
-    newAudio.play()
-      .catch(() => {
+    setCurrentSrc(src);
+    if (audioRef.current) {
+      audioRef.current.src = src;
+      audioRef.current.play().catch(() => {
         alert("El navegador bloqueó la reproducción. Tocá el botón otra vez.");
       });
-    setCurrentAudio(newAudio);
+    }
   };
 
   return (
@@ -94,34 +93,34 @@ function App() {
           <div className="carta">
             <h2>Para vos, mi amor 💖</h2>
             <p>
-              Hay momentos de la vida que llega como un rayo y lo cambia todo en un instante ,   
-              la forma de pensar , de vivir la vida, la forma de ver las cosas, de un segundo a otro   
-              le encuentras sentido a todos los sin sentido de la vida.  
-              Es como si depertaras de un sueño profundo y la realidad era distinta en el sueño.  
-              Algunas veces inventamos ese mundo de fantasias para escapar de la realidad ,  
-              pero muchas veces despertar de ese mundo irreal se vuelve una tarea imposible , la   
-              mayoria de las veces construimos ese mundo para olvidarnos de la realidad para poderlo   
-              moldear y cambiarlo todo a nuestro gusto, ilvidar problemas, sufrimientos , cosas del pasado   
-              que nos afectan , en fin es un mundo para olvidar y protegernos de todas las cosas que mas tememos.  
-              No lo niego fue el mundo que siempre soñe vivir , sin temor a nada, pero no me daba cuenta que me estaba   
-              olvidando de vivir la vida, estaba en una burbuja de sueños de la cual no queria despertar.  
-              PERO LLEGASTE TU A DESPERTARME: Me despertaste como si fuese que me hayan derramado un valdazo de agua   
-              fria, me devolviste a la realidad, me despertaste para darme cuenta de que aun que este vivo   
-              no estaba viviendo la vida, me di cuenta que nunca ame , nunca quise de verdad , que nunca estuve   
-              enamorado realmente, que nunca me importo tanto nadie.  
-              Cuando te conoci me reproche todo lo que habia sentido antes, cuando empece a conocerte supe lo que   
-              era querer a alguien de verdad, pase de todo en esta vida pero nunca habia amado de verdad hasta que te conoci.  
-              ME DI CUENTA QUE NUNCA ANTES PREFERIA IR A VER ZOOTOPIA2 CON LA PERSONA QUE QUIERO QUE IR A JUGAR FUTBOL   
-              UN VUERNES POR LA TARDE , NUNCA SENTI LO HERMOSO QUE SE SIENTE VER MIS REFLEJOS EN LOS OJOS DE LA PERSONA QUE   
-              QUIERO, QUE SE DISFRUTABA TANTO TOMAR UN MATE SENTADOS JUNTITOS Y QUE SE TOMEN FOTITOS.  
-              Contigo supe que nunca antes me importo nadie mas que yo y mi familia , contigo experimente por primera vez   
-              lo que es el miedo a perder a una persona que se quiere, en pocas palabras;TU ME HICISTE SENTIR LO QUE   
-              NUNCA ANTES SENTI Y A AMAR DE VERDAD, SIN MENTIRAS, SIN FILTROS, SIN FINGIR ABSOLUTAMENTE NADA.  
-              Despues de tanto tiempo encerrado en mi mundo ahora despertar y sentir todos estos sentimientos tan unicos y   
-              hermosos, sentimientos maravillosos me que hizo despertar y volver a enfocarme, a no desperdiciar mas el tiempo   
-              empezar a vivir de verdad no a sobrevivir nada mas, que puedo ser mejor , en enfocarme mas en mi vida , en ti ,  
-              en mi familia , en mis proyectos en la vida, en disfrutar mas , querer mas amar mas.  
-              GRACIAS AMOR POR TODO LO QUE HAZ HECHO POR MI Y HAZ CAMBIADO EN MI...   
+              Hay momentos de la vida que llega como un rayo y lo cambia todo en un instante ,  
+              la forma de pensar , de vivir la vida, la forma de ver las cosas, de un segundo a otro  
+              le encuentras sentido a todos los sin sentido de la vida.
+              Es como si depertaras de un sueño profundo y la realidad era distinta en el sueño.
+              Algunas veces inventamos ese mundo de fantasias para escapar de la realidad ,
+              pero muchas veces despertar de ese mundo irreal se vuelve una tarea imposible , la  
+              mayoria de las veces construimos ese mundo para olvidarnos de la realidad para poderlo  
+              moldear y cambiarlo todo a nuestro gusto, ilvidar problemas, sufrimientos , cosas del pasado  
+              que nos afectan , en fin es un mundo para olvidar y protegernos de todas las cosas que mas tememos.
+              No lo niego fue el mundo que siempre soñe vivir , sin temor a nada, pero no me daba cuenta que me estaba  
+              olvidando de vivir la vida, estaba en una burbuja de sueños de la cual no queria despertar.
+              PERO LLEGASTE TU A DESPERTARME: Me despertaste como si fuese que me hayan derramado un valdazo de agua  
+              fria, me devolviste a la realidad, me despertaste para darme cuenta de que aun que este vivo  
+              no estaba viviendo la vida, me di cuenta que nunca ame , nunca quise de verdad , que nunca estuve  
+              enamorado realmente, que nunca me importo tanto nadie.
+              Cuando te conoci me reproche todo lo que habia sentido antes, cuando empece a conocerte supe lo que  
+              era querer a alguien de verdad, pase de todo en esta vida pero nunca habia amado de verdad hasta que te conoci.
+              ME DI CUENTA QUE NUNCA ANTES PREFERIA IR A VER ZOOTOPIA2 CON LA PERSONA QUE QUIERO QUE IR A JUGAR FUTBOL  
+              UN VUERNES POR LA TARDE , NUNCA SENTI LO HERMOSO QUE SE SIENTE VER MIS REFLEJOS EN LOS OJOS DE LA PERSONA QUE  
+              QUIERO, QUE SE DISFRUTABA TANTO TOMAR UN MATE SENTADOS JUNTITOS Y QUE SE TOMEN FOTITOS.
+              Contigo supe que nunca antes me importo nadie mas que yo y mi familia , contigo experimente por primera vez  
+              lo que es el miedo a perder a una persona que se quiere, en pocas palabras;TU ME HICISTE SENTIR LO QUE  
+              NUNCA ANTES SENTI Y A AMAR DE VERDAD, SIN MENTIRAS, SIN FILTROS, SIN FINGIR ABSOLUTAMENTE NADA.
+              Despues de tanto tiempo encerrado en mi mundo ahora despertar y sentir todos estos sentimientos tan unicos y  
+              hermosos, sentimientos maravillosos me que hizo despertar y volver a enfocarme, a no desperdiciar mas el tiempo  
+              empezar a vivir de verdad no a sobrevivir nada mas, que puedo ser mejor , en enfocarme mas en mi vida , en ti ,
+              en mi familia , en mis proyectos en la vida, en disfrutar mas , querer mas amar mas.
+              GRACIAS AMOR POR TODO LO QUE HAZ HECHO POR MI Y HAZ CAMBIADO EN MI...  
               TE AMO... ATT: JUAN
             </p>
             <p className="firma">Con todo el amor del mundo, Juan ✨</p>
@@ -154,8 +153,8 @@ function App() {
         </div>
       )}
 
-      {/* Reproductor de audio oculto */}
-      <audio ref={audioRef} src="/tu-poeta.mp3" loop />
+      {/* Reproductor de audio único */}
+      <audio ref={audioRef} src={currentSrc} controls style={{ display: "none" }} />
 
       <footer>
         <p>HECHO CON TODO EL AMOR DEL UNIVERSO POR TU POETA✨</p>
