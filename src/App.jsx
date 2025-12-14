@@ -9,6 +9,7 @@ function App() {
   const [indiceFrase, setIndiceFrase] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(null);
+  const [audioEnabled, setAudioEnabled] = useState(false);
 
   const frases = [
     "HAGAMOS QUE ESTO FUNCIONE Y NO POR QUE SEA FACIL EHH, SINO POR QUE VALE LA PENA 💘",
@@ -28,9 +29,7 @@ function App() {
   };
 
   const mostrarSiguienteFrase = () => {
-    setIndiceFrase((prev) =>
-      prev === null ? 0 : (prev + 1) % frases.length
-    );
+    setIndiceFrase((prev) => (prev === null ? 0 : (prev + 1) % frases.length));
   };
 
   const togglePlay = () => {
@@ -38,16 +37,18 @@ function App() {
     if (!audio) return;
 
     if (audio.paused) {
-      audio.play();
-      setIsPlaying(true);
+      audio.play().then(() => setIsPlaying(true)).catch(() => {});
     } else {
       audio.pause();
       setIsPlaying(false);
     }
   };
 
-  // ✅ Reproducir música al apretar "MI CORA ❤️"
   const playPhotoMusic = (src) => {
+    if (!audioEnabled) {
+      alert("Primero activá el sonido con el botón inicial 🔊");
+      return;
+    }
     setCurrentSrc(src);
     if (audioRef.current) {
       audioRef.current.src = src;
@@ -57,14 +58,25 @@ function App() {
     }
   };
 
+  const enableAudio = () => {
+    if (audioRef.current) {
+      // Intenta reproducir un silencio para habilitar permisos
+      audioRef.current.play().catch(() => {});
+    }
+    setAudioEnabled(true);
+    alert("Sonido activado 🔊. Ahora podés usar los botones MI CORA ❤️");
+  };
+
   return (
-    <div
-      className="app"
-      style={{ backgroundImage: "url('/fondo.jpg')" }}
-    >
+    <div className="app" style={{ backgroundImage: "url('/fondo.jpg')" }}>
       <h1>Para vos, mi amor 💕</h1>
 
-      {/* Botones de frases */}
+      {!audioEnabled && (
+        <button className="btn" onClick={enableAudio}>
+          Activar sonido 🔊
+        </button>
+      )}
+
       <button className="btn" onClick={mostrarFraseAleatoria}>
         Frase aleatoria 🧞‍♂️
       </button>
@@ -72,22 +84,18 @@ function App() {
         Siguiente frase ⏭️
       </button>
 
-      {/* Frase actual */}
       {indiceFrase !== null && (
         <div className="frase-actual">{frases[indiceFrase]}</div>
       )}
 
-      {/* Botón de música principal */}
       <button className="btn" onClick={togglePlay}>
         {isPlaying ? "⏸️ Pausar música" : "🎵 Escuchar Tu Poeta"}
       </button>
 
-      {/* Botón para mostrar/ocultar la carta */}
       <button className="btn" onClick={() => setShowLetter(!showLetter)}>
         {showLetter ? "Cerrar carta 💌" : "Ver carta 💌"}
       </button>
 
-      {/* Carta romántica completa */}
       {showLetter && (
         <div className="carta-container">
           <div className="carta">
@@ -128,12 +136,10 @@ function App() {
         </div>
       )}
 
-      {/* 📁 Botón para mostrar/ocultar el álbum secreto */}
       <button className="btn" onClick={() => setShowGallery(!showGallery)}>
         {showGallery ? "Cerrar álbum secreto 📁" : "Abrir álbum secreto 📁"}
       </button>
 
-      {/* Álbum oculto */}
       {showGallery && (
         <div className="album">
           <h2>La Reina y el Poeta</h2>
@@ -153,7 +159,7 @@ function App() {
         </div>
       )}
 
-      {/* Reproductor de audio único */}
+      {/* Reproductor de audio único (oculto pero presente en el DOM) */}
       <audio ref={audioRef} src={currentSrc} controls style={{ display: "none" }} />
 
       <footer>
