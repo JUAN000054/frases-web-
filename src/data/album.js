@@ -97,3 +97,16 @@ export const album = [
     musica: { src: "/music/foto19_nombre.mp3", title: "amorsincero" }
   }
 ];
+
+// ✅ Exportaciones derivadas
+export const albumFotos = album.map(item => ({
+  id: item.id,
+  src: item.foto.src,
+  alt: item.foto.alt
+}));
+
+export const albumMusicas = album.map(item => ({
+  id: item.id,
+  src: item.musica.src,
+  title: item.musica.title
+}));
