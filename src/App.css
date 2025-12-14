@@ -330,3 +330,19 @@ footer {
   color: black;              /* letras negras */
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
+.carta {
+  background: pink;          /* fondo rosa */
+  border: 3px solid black;   /* bordes negros */
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 700px;
+  text-align: left;
+  line-height: 1.6;
+  color: black;              /* letras negras */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.btn-cora {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #ff4d6d
