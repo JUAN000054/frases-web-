@@ -318,3 +318,15 @@ footer {
   font-size: 0.9rem;
   color: #ffd6e0;
 }
+
+.carta {
+  background: pink;          /* fondo rosa */
+  border: 3px solid black;   /* bordes negros */
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 700px;
+  text-align: left;
+  line-height: 1.6;
+  color: black;              /* letras negras */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}

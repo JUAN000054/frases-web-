@@ -137,13 +137,14 @@ function App() {
           <h2>La Reina y el Poeta</h2>
           <div className="album-grid">
             {album.map((item) => (
-              <div
-                key={item.id}
-                className="album-item"
-                onClick={() => playPhotoMusic(item.musica.src)}
-              >
+              <div key={item.id} className="album-item">
                 <img src={item.foto.src} alt={item.foto.alt} />
-                <p>{item.musica.title}</p>
+                <button
+                  className="btn-cora"
+                  onClick={() => playPhotoMusic(item.musica.src)}
+                >
+                  MI CORA ❤️
+                </button>
               </div>
             ))}
           </div>
