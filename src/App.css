@@ -345,4 +345,15 @@ footer {
 .btn-cora {
   margin-top: 10px;
   padding: 8px 16px;
-  background: #ff4d6d
+  background: #ff4d6d;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-cora:hover {
+  background: #e63e5c;
+}
