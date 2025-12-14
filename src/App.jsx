@@ -1,3 +1,4 @@
+import { albumFotos, albumMusicas } from "./data/album";
 import Gallery from './components/Gallery';
 import { useRef, useState } from "react";
 import "./App.css";
@@ -11,9 +12,9 @@ function App() {
 
   const frases = [
     "HAGAMOS QUE ESTO FUNCIONE Y NO POR QUE SEA FACIL EHH, SINO POR QUE VALE LA PENA 💘",
-    "Tu sonrisa ilumina mis días ✨",
+    "Tu sonrisa es la calma para mis tormentas ✨",
     "Eres mi razón de ser 💕",
-    "Cada momento contigo es un regalo 🎁",
+    "Cada momento contigo es algo unico e inolvidable 🎁",
     "Te amo más de lo que las palabras puedan expresar 💖",
     "Eres mi sueño hecho realidad 🌙",
     "Contigo todo es magia ✨",
@@ -51,13 +52,33 @@ function App() {
       style={{ backgroundImage: "url('/fondo.jpg')" }} // ✅ fondo intacto
     >
       <h1>Para vos, mi amor 💕</h1>
-      <div className="ultima-carta-fija">
-  <p>
-    
-  </p>
-  <audio src="/music/paginasdeamigos.mp3" autoPlay loop />
-</div>
 
+      {/* 🎶 Nuevo bloque del álbum */}
+      <section className="album">
+        <h2> La Reina y el Poeta</h2>
+
+        <div className="album-photos">
+          {albumFotos.map((foto) => (
+            <img key={foto.id} src={foto.src} alt={foto.alt} />
+          ))}
+        </div>
+
+        <div className="album-music">
+          {albumMusicas.map((musica) => (
+            <div key={musica.id}>
+              <p>{musica.title}</p>
+              <audio controls>
+                <source src={musica.src} type="audio/mpeg" />
+              </audio>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className="ultima-carta-fija">
+        <p></p>
+        <audio src="/music/paginasdeamigos.mp3" autoPlay loop />
+      </div>
 
       {/* Botones de frases */}
       <button className="btn" onClick={mostrarFraseAleatoria}>
@@ -88,21 +109,39 @@ function App() {
           <div className="carta">
             <h2>Para vos, mi amor 💖</h2>
             <p>
-              En cada palabra que escribo, hay un pedacito de mi alma que te busca.
-              Sos mi inspiración, mi calma, mi alegría. Esta página es solo un reflejo
-              de todo lo que siento por vos.
-            </p>
-            <p>
-              Mi intencion es hacerte saber que no tengo ojos para otra persona, que eres unica,
-              que me importas y no para un momento sino para una relacion sana y estable.
-              Que eres la unica persona que me alegra con un bonito con un bonito mensaje, que admiro
-              verte todo el tiempo , que me siento en otro mundo cuando me abrazas y para mi eres perfecta 
-              en todos los sentidos y te quiero asi y no me importa los problemas por superar porque siempre ,
-              siempre estare ahi apoyandote y ayudandote porque quiero , nunca lo olvides mi amor , quiero 
-              verte triunfar en todo lo que te propongas mi vida, pero sobre todo mi amor, en verte feliz.
-              TE AMO SEÑORITA 
-            </p>
-            <p className="firma">Con todo el amor del mundo , Juan ✨</p>
+              Hay momentos de la vida que llega como un rayo y lo cambia todo en un instante , 
+              la forma de pensar , de vivir la vida, la forma de pensar, de un segundo a otro 
+              le encuentras sentido a todos los sin sentido de la vida.
+              Es como si depertaras de un sueño profundo y la realidad era distinta en el sueño.
+                Algunas veces inventamos ese mundo de fantasias para escapar de la realidad ,
+                pero muchas veces despertar de ese mundo irreal se vuelve una tarea imposible , la 
+                mayoria de las veces construimos ese mundo para olvidarnos de la realidad para poderlo 
+                moldear y cambiarlo todo a nuestro gusto, ilvidar problemas, sufrimientos , cosas del pasado 
+                que nos afectan , en fin es un mundo para olvidar y protegernos de todas las cosas que mas tememos.
+              No lo niego fue el mundo que siempre soñe vivir , sin temor a nada, pero no me daba cuenta que me estaba 
+              olvidando de vivir la vida, estaba en una burbuja de sueños de la cual no queria despertar.
+                PERO LLEGASTE TU A DESPERTARME: Me despertaste como si fuese que me hayan derramado un valdazo de agua 
+                fria, me devolviste a la realidad, me despertaste para darme cuenta de que aun que este vivo 
+                no estaba viviendo la vida, me di cuenta que nunca ame , nunca quise de verdad , que nunca estuve 
+                enamorado realmente, que nunca me importo tanto nadie.
+              Cuando te conoci me reproche todo lo que habia sentido antes, cuando empece a conocerte supe lo que 
+              era querer a alguien de verdad, pase de todo en esta vida pero nunca habia amado de verdad hasta que te conoci.
+              ME DI CUENTA QUE NUNCA ANTES PREFERIA IR A VER ZOOTOPIA2 CON LA PERSONA QUE QUIERO QUE IR A JUGAR FUTBOL 
+              UN VUERNES POR LA TARDE , NUNCA SENTI LO HERMOSO QUE SE SIENTE VER MIS REFLEJOS EN LOS OJOS DE LA PERSONA QUE 
+              QUIERO, QUE SE DISFRUTABA TANTO TOMAR UN MATE SENTADOS JUNTITOS Y QUE SE TOMEN FOTITOS.
+               Contigo supe que nunca antes me importo nadie mas que yo y mi familia , contigo experimente por primera vez 
+               lo que es el miedo a perder a una persona que se quiere, en pocas palabras;TU ME HICISTE SENTIR LO QUE 
+               NUNCA ANTES SENTI Y A AMAR DE VERDAD, SIN MENTIRAS, SIN FILTROS, SIN FINGIR ABSOLUTAMENTE NADA.
+                Despues de tanto tiempo encerrado en mi mundo ahora despertar y sentir todos estos sentimientos tan unicos y 
+                hermosos, sentimientos maravillosos me que hizo despertar y volver a enfocarme, a no desperdiciar mas el tiempo 
+                empezar a vivir de verdad no a sobrevivir nada mas, que puedo ser mejor , en enfocarme mas en mi vida , en ti ,
+                en mi familia , en mis proyectos en la vida, en disfrutar mas , querer mas amar mas.
+                             GRACIAS AMOR POR TODO LO QUE HAZ HECHO POR MI Y HAZ CAMBIADO EN MI... 
+                                TE AMO... ATT: JUAN 
+              
+              
+            
+            <p className="firma">Con todo el amor del mundo, Juan ✨</p>
           </div>
         </div>
       )}

@@ -188,3 +188,31 @@ h1 {
   scrollbar-width: thin;
   scrollbar-color: #ff4d6d #111;
 }
+.album {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.album-photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.album-photos img {
+  width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.album-music {
+  margin-top: 20px;
+  display: grid;
+  gap: 12px;
+  justify-content: center;
+}
+
+.album-music audio {
+  width: 280px;
+}
