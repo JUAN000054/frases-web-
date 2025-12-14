@@ -1,5 +1,4 @@
-import { albumFotos, albumMusicas } from "./data/album";
-import Gallery from './components/Gallery';
+import { album } from "./data/album";
 import { useRef, useState } from "react";
 import "./App.css";
 
@@ -8,7 +7,8 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showLetter, setShowLetter] = useState(false);
   const [indiceFrase, setIndiceFrase] = useState(null);
-  const [showGallery, setShowGallery] = useState(false); // ✅ nuevo estado
+  const [showGallery, setShowGallery] = useState(false);
+  const [currentAudio, setCurrentAudio] = useState(null);
 
   const frases = [
     "HAGAMOS QUE ESTO FUNCIONE Y NO POR QUE SEA FACIL EHH, SINO POR QUE VALE LA PENA 💘",
@@ -46,39 +46,21 @@ function App() {
     }
   };
 
+  const playPhotoMusic = (src) => {
+    if (currentAudio) {
+      currentAudio.pause();
+    }
+    const newAudio = new Audio(src);
+    newAudio.play();
+    setCurrentAudio(newAudio);
+  };
+
   return (
     <div
       className="app"
-      style={{ backgroundImage: "url('/fondo.jpg')" }} // ✅ fondo intacto
+      style={{ backgroundImage: "url('/fondo.jpg')" }}
     >
       <h1>Para vos, mi amor 💕</h1>
-
-      {/* 🎶 Nuevo bloque del álbum */}
-      <section className="album">
-        <h2> La Reina y el Poeta</h2>
-
-        <div className="album-photos">
-          {albumFotos.map((foto) => (
-            <img key={foto.id} src={foto.src} alt={foto.alt} />
-          ))}
-        </div>
-
-        <div className="album-music">
-          {albumMusicas.map((musica) => (
-            <div key={musica.id}>
-              <p>{musica.title}</p>
-              <audio controls>
-                <source src={musica.src} type="audio/mpeg" />
-              </audio>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="ultima-carta-fija">
-        <p></p>
-        <audio src="/music/paginasdeamigos.mp3" autoPlay loop />
-      </div>
 
       {/* Botones de frases */}
       <button className="btn" onClick={mostrarFraseAleatoria}>
@@ -103,7 +85,7 @@ function App() {
         {showLetter ? "Cerrar carta 💌" : "Ver carta 💌"}
       </button>
 
-      {/* Carta romántica */}
+      {/* Carta romántica completa */}
       {showLetter && (
         <div className="carta-container">
           <div className="carta">
@@ -138,20 +120,35 @@ function App() {
               en mi familia , en mis proyectos en la vida, en disfrutar mas , querer mas amar mas.
               GRACIAS AMOR POR TODO LO QUE HAZ HECHO POR MI Y HAZ CAMBIADO EN MI...  
               TE AMO... ATT: JUAN
-            </p> {/* ✅ cierre agregado */}
-
+            </p>
             <p className="firma">Con todo el amor del mundo, Juan ✨</p>
           </div>
         </div>
       )}
 
-      {/* 📁 Botón para mostrar/ocultar la galería secreta */}
+      {/* 📁 Botón para mostrar/ocultar el álbum secreto */}
       <button className="btn" onClick={() => setShowGallery(!showGallery)}>
-        {showGallery ? "Cerrar archivo secreto 📁" : "Abrir archivo secreto 📁"}
+        {showGallery ? "Cerrar álbum secreto 📁" : "Abrir álbum secreto 📁"}
       </button>
 
-      {/* Galería secreta */}
-      {showGallery && <Gallery />}
+      {/* Álbum oculto */}
+      {showGallery && (
+        <div className="album">
+          <h2>La Reina y el Poeta</h2>
+          <div className="album-grid">
+            {album.map((item) => (
+              <div
+                key={item.id}
+                className="album-item"
+                onClick={() => playPhotoMusic(item.musica.src)}
+              >
+                <img src={item.foto.src} alt={item.foto.alt} />
+                <p>{item.musica.title}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Reproductor de audio oculto */}
       <audio ref={audioRef} src="/tu-poeta.mp3" loop />
