@@ -125,7 +125,11 @@ function App() {
                       setCurrentSrc(item.musica.src);
                       audioRef.current.src = item.musica.src;
                       audioRef.current.load();
-                      audioRef.current.play().catch(() => {});
+
+                      // Esperar a que el audio esté listo antes de reproducir
+                      audioRef.current.oncanplaythrough = () => {
+                        audioRef.current.play().catch(() => {});
+                      };
                     }
                   }}
                 >
