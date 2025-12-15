@@ -1,1 +1,1 @@
-export const API_BASE = "http://localhost:4000";
+export const API_BASE = "https://para-ti-mi-reina-1.onrender.com";
