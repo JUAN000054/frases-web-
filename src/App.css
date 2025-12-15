@@ -29,7 +29,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(12, 8, 238, 0.35);
+  background: rgba(243, 5, 227, 0.35);
   backdrop-filter: blur(2px);
   pointer-events: none;
 }
@@ -44,7 +44,7 @@ h1 {
   color: rgb(220, 32, 245);
   font-size: 48px;
   margin-bottom: 12px;
-  text-shadow: 0 3px 6px rgba(14, 192, 216, 0.4);
+  text-shadow: 0 3px 6px rgba(241, 5, 159, 0.4);
 }
 
 /* Botones elegantes */
@@ -139,7 +139,7 @@ h1 {
 .firma {
   margin-top: 16px;
   font-style: italic;
-  color: #ff66aa;
+  color: #f60471;
   text-align: right;
 }
 
@@ -159,10 +159,10 @@ h1 {
 /* Estilo especial para el botón del archivo secreto */
 .btn-secret {
   background-color: #222;
-  color: #ffd700;
+  color: #ff00e1;
   font-size: 1.2rem;
   padding: 12px 20px;
-  border: 2px solid #ffd700;
+  border: 2px solid #ff0000;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -223,7 +223,7 @@ h1 {
   background-size: cover;
   background-position: center;
   text-align: center;
-  color: #fff;
+  color: #ffffffe5;
   font-family: 'Segoe UI', sans-serif;
   padding: 20px;
 }
@@ -275,7 +275,7 @@ h1 {
   text-align: right;
   font-weight: bold;
   margin-top: 15px;
-  color: #ffb3c6;
+  color: #fb00c5;
 }
 
 /* Álbum secreto */
@@ -367,7 +367,7 @@ footer {
 .btn {
   margin: 6px;
   padding: 8px 14px;
-  background: #6c63ff;
+  background: #e8e5ec;
   color: #fff;
   border: none;
   border-radius: 8px;
