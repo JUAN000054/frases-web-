@@ -1,6 +1,7 @@
 import { album } from "./data/album";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import "./App.css";
+import { API_BASE } from "./config";
 
 function ColorPicker() {
   const handleColorChange = (e) => {
@@ -22,6 +23,8 @@ function ColorPicker() {
 }
 
 function App() {
+  const [extraFotos, setExtraFotos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showLetter, setShowLetter] = useState(false);
@@ -45,11 +48,61 @@ function App() {
     "Cada latido me recuerda que te amo 💘"
   ];
 
-  const extraFotos = [
-    { src: "/fotos/recuerdo1.jpg", alt: "Recuerdo 1" },
-    { src: "/fotos/recuerdo2.jpg", alt: "Recuerdo 2" },
-    { src: "/fotos/recuerdo3.jpg", alt: "Recuerdo 3" }
-  ];
+  // 🔎 Al cargar la app, pedimos al servidor el fondo y la galería
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [bgRes, galRes] = await Promise.all([
+          fetch(`${API_BASE}/background`).then(r => r.json()),
+          fetch(`${API_BASE}/gallery`).then(r => r.json()),
+        ]);
+
+        if (bgRes?.url) {
+          document.querySelector(".app").style.backgroundImage = `url(${API_BASE}${bgRes.url})`;
+        }
+        if (galRes?.photos) {
+          setExtraFotos(galRes.photos.map(url => `${API_BASE}${url}`));
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
+  // 🔎 Función para subir nuevo fondo
+  const handleBackgroundUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const form = new FormData();
+    form.append("file", file);
+
+    const res = await fetch(`${API_BASE}/upload-background`, {
+      method: "POST",
+      body: form,
+    });
+    const data = await res.json();
+    if (data?.url) {
+      document.querySelector(".app").style.backgroundImage = `url(${API_BASE}${data.url})`;
+    }
+  };
+
+  // 🔎 Función para subir foto a la galería
+  const handleGalleryUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const form = new FormData();
+    form.append("file", file);
+
+    const res = await fetch(`${API_BASE}/upload-gallery`, {
+      method: "POST",
+      body: form,
+    });
+    const data = await res.json();
+    if (data?.url) {
+      setExtraFotos(prev => [...prev, `${API_BASE}${data.url}`]);
+    }
+  };
 
   const mostrarFraseAleatoria = () => {
     const indice = Math.floor(Math.random() * frases.length);
@@ -73,7 +126,7 @@ function App() {
   };
 
   return (
-    <div className="app" style={{ backgroundImage: "url('/fondo.jpg')" }}>
+    <div className="app">
       {/* Botón de ajustes */}
       <button
         className="btn-ajustes"
@@ -94,14 +147,18 @@ function App() {
             id="fondo"
             type="file"
             accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files[0];
-              if (file) {
-                const url = URL.createObjectURL(file);
-                document.querySelector(".app").style.backgroundImage = `url(${url})`;
-              }
-            }}
+            onChange={handleBackgroundUpload}
           />
+
+          <div style={{ marginTop: "15px" }}>
+            <label htmlFor="galeria"><strong>📷 Agregar foto a galería:</strong></label>
+            <input
+              id="galeria"
+              type="file"
+              accept="image/*"
+              onChange={handleGalleryUpload}
+            />
+          </div>
 
           <div style={{ marginTop: "15px" }}>
             <button onClick={() => setShowExtraGallery(!showExtraGallery)}>
@@ -115,11 +172,15 @@ function App() {
       {showExtraGallery && (
         <div className="extra-gallery">
           <h2>Galería de recuerdos 🌟</h2>
-          <div className="gallery-grid">
-            {extraFotos.map((foto, index) => (
-              <img key={index} src={foto.src} alt={foto.alt} />
-            ))}
-          </div>
+          {isLoading ? (
+            <p>Cargando...</p>
+          ) : (
+            <div className="gallery-grid">
+              {extraFotos.map((src, index) => (
+                <img key={index} src={src} alt={`Recuerdo ${index + 1}`} />
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -149,8 +210,8 @@ function App() {
           <div className="carta">
             <h2>Para vos, mi amor 💖</h2>
             <p>
-              Hay momentos de la vida que llega como un rayo y lo cambia todo en un instante...  
-              {/* Aquí va tu carta completa, ya la tenés escrita, mantenela íntegra */}
+              Hay momentos de la vida que llega como un rayo y lo cambia todo en un instante...
+              {/* Aquí va tu carta completa */}
             </p>
             <p className="firma">Con todo el amor del mundo, Juan ✨</p>
           </div>
@@ -190,7 +251,8 @@ function App() {
         </div>
       )}
 
-      {/* Reproductor oculto */}
+      {/* Reproduct
+       {/* Reproductor oculto */}
       <audio
         ref={audioRef}
         src={currentSrc}
