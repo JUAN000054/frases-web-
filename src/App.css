@@ -636,3 +636,143 @@ footer {
   font-size: 0.9em;
   color: #333;
 }
+/* Panel de ajustes refinado */
+.ajustes-panel {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  width: 250px;
+  animation: fadeIn 0.4s ease;
+  z-index: 20;
+}
+
+.ajustes-panel h3 {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: var(--accent-color, #f8c8dc);
+  text-align: center;
+}
+
+.ajustes-panel label {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+.ajustes-panel input[type="file"] {
+  width: 100%;
+  font-size: 0.85em;
+}
+
+.ajustes-panel button {
+  margin-top: 12px;
+  width: 100%;
+  background: var(--accent-color, #f8c8dc);
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.ajustes-panel button:hover {
+  background: #ffb6c1;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botón de cierre dentro del panel */
+.ajustes-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+.ajustes-panel {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  width: 260px;
+  animation: fadeIn 0.4s ease;
+  z-index: 20;
+}
+
+.ajustes-panel h3 {
+  margin-top: 0;
+  font-size: 1.3em;
+  color: var(--accent-color, #f8c8dc);
+  text-align: center;
+}
+
+.ajustes-panel label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 0.95em;
+  color: #444;
+}
+
+.ajustes-panel input[type="file"] {
+  width: 100%;
+  font-size: 0.85em;
+}
+
+.ajustes-panel button {
+  margin-top: 14px;
+  width: 100%;
+  background: var(--accent-color, #f8c8dc);
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.ajustes-panel button:hover {
+  background: #ffb6c1;
+  transform: scale(1.03);
+}
+
+.ajustes-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ajustes-panel {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background: rgba(255, 182, 193, 0.95); /* rosa suave */
+  color: #222; /* letras oscuras */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  width: 260px;
+  animation: fadeIn 0.4s ease;
+  z-index: 20;
+}
