@@ -121,9 +121,11 @@ function App() {
                   className="btn-cora"
                   onClick={() => {
                     if (audioRef.current) {
+                      audioRef.current.pause();
                       setCurrentSrc(item.musica.src);
                       audioRef.current.src = item.musica.src;
-                      audioRef.current.play();
+                      audioRef.current.load();
+                      audioRef.current.play().catch(() => {});
                     }
                   }}
                 >
@@ -136,7 +138,12 @@ function App() {
       )}
 
       {/* Reproductor oculto */}
-      <audio ref={audioRef} src={currentSrc} style={{ display: "none" }} />
+      <audio
+        ref={audioRef}
+        src={currentSrc}
+        preload="auto"
+        style={{ display: "none" }}
+      />
 
       <footer>
         <p>HECHO CON TODO EL AMOR DEL UNIVERSO POR TU POETA✨</p>
