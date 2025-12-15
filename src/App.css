@@ -29,10 +29,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(245, 242, 245, 0.868);
-  backdrop-filter: blur(2px);
+  background: transparent; /* sin color encima */
+  backdrop-filter: none;   /* sin desenfoque */
   pointer-events: none;
 }
+
 
 .app > * {
   position: relative;
