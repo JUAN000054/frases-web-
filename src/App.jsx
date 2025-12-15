@@ -110,41 +110,27 @@ function App() {
         {showGallery ? "Cerrar álbum secreto 📁" : "Abrir álbum secreto 📁"}
       </button>
 
-      {showGallery && (
-        <div className="album">
-          <h2>La Reina y el Poeta</h2>
-          <div className="album-grid">
-            {album.map((item) => (
-              <div key={item.id} className="album-item">
-                <img src={item.foto.src} alt={item.foto.alt} />
-                <button
-                  className="btn-cora"
-                  onClick={() => {
-                    if (audioRef.current) {
-                      setCurrentSrc(item.musica.src);
-                      audioRef.current.src = item.musica.src;
-                      audioRef.current.play().catch(() => {
-                        alert("El navegador bloqueó la reproducción. Tocá el botón otra vez.");
-                      });
-                    }
-                  }}
-                >
-                  MI CORA ❤️
-                </button>
-              </div>
-            ))}
-          </div>
+     {showGallery && (
+  <div className="album">
+    <h2>La Reina y el Poeta</h2>
+    <div className="album-grid">
+      {album.map((item) => (
+        <div key={item.id} className="album-item">
+          <img src={item.foto.src} alt={item.foto.alt} />
+          <button
+            className="btn-cora"
+            onClick={() => {
+              if (audioRef.current) {
+                setCurrentSrc(item.musica.src);
+                audioRef.current.src = item.musica.src;
+                audioRef.current.play();
+              }
+            }}
+          >
+            MI CORA ❤️
+          </button>
         </div>
-      )}
-
-      {/* Reproductor oculto para las canciones del álbum secreto */}
-      <audio ref={audioRef} src={currentSrc} controls style={{ display: "none" }} />
-
-      <footer>
-        <p>HECHO CON TODO EL AMOR DEL UNIVERSO POR TU POETA✨</p>
-      </footer>
+      ))}
     </div>
-  );
-}
-
-export default App;
+  </div>
+)}
