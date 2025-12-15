@@ -72,7 +72,7 @@ export const album = [
   {
     id: "15",
     foto: { src: "/images/foto15.jpg", alt: "Recuerdo 15" },
-    musica: { src: "/music/foto15_Cristina.mp3", title: "Cristina" }
+    musica: { src: "/music/foto15_siempreatulado.mp3", title: "siempreatulado" }
   },
   {
     id: "16",
@@ -92,7 +92,7 @@ export const album = [
   {
     id: "19",
     foto: { src: "/images/foto19.jpg", alt: "Recuerdo 19" },
-    musica: { src: "/music/foto19_Amorsincero.mp3", title: "Amor sincero" }
+    musica: { src: "/music/foto19_laslocurasmias.mp3", title: "laslocurasmias" }
   }
 ];
 
