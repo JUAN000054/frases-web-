@@ -29,7 +29,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(243, 5, 227, 0.35);
+  background: rgba(245, 242, 245, 0.868);
   backdrop-filter: blur(2px);
   pointer-events: none;
 }
@@ -41,7 +41,7 @@
 
 h1 {
   font-family: 'Great Vibes', cursive;
-  color: rgb(220, 32, 245);
+  color: rgba(235, 240, 250, 0.933);
   font-size: 48px;
   margin-bottom: 12px;
   text-shadow: 0 3px 6px rgba(241, 5, 159, 0.4);
