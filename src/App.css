@@ -489,3 +489,150 @@ audio::-webkit-media-controls-timeline {
   background-color: var(--accent-color);
   color: white;
 }
+/* Fondo principal */
+.app {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;       /* que la foto cubra toda la pantalla */
+  background-position: center;  /* centrada siempre */
+  background-repeat: no-repeat; /* sin repetirse */
+  color: var(--secondary-color, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+/* Quitar cualquier capa encima de la foto */
+.app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent; /* sin color encima */
+  backdrop-filter: none;   /* sin desenfoque */
+  pointer-events: none;
+}
+
+/* Botón de ajustes */
+.btn-ajustes {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255,255,255,0.6);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+.btn-ajustes:hover {
+  background: rgba(255,255,255,0.9);
+}
+
+/* Panel de ajustes */
+.ajustes-panel {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  background: rgba(255,255,255,0.9);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+/* Galería extra */
+.extra-gallery {
+  margin-top: 20px;
+  text-align: center;
+}
+.gallery-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.gallery-grid img {
+  width: 120px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Botones generales */
+.btn {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--accent-color, #f8c8dc);
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Botón MI CORA */
+.btn-cora {
+  background-color: var(--accent-color, #f8c8dc);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: transform 0.3s ease;
+}
+.btn-cora:hover {
+  transform: scale(1.1);
+}
+
+/* Carta */
+.carta-container {
+  margin-top: 20px;
+  max-width: 800px;
+}
+.carta {
+  background: rgba(255,255,255,0.85);
+  padding: 20px;
+  border-radius: 10px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.carta h2 {
+  margin-bottom: 15px;
+}
+.carta .firma {
+  margin-top: 20px;
+  font-style: italic;
+  text-align: right;
+}
+
+/* Frases */
+.frase-actual {
+  margin: 15px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Selector de colores */
+.color-picker {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #333;
+}

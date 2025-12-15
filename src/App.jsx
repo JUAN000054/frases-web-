@@ -29,6 +29,10 @@ function App() {
   const [showGallery, setShowGallery] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(null);
 
+  // Estados nuevos para ajustes (independientes de lo anterior)
+  const [showSettings, setShowSettings] = useState(false);
+  const [showExtraGallery, setShowExtraGallery] = useState(false);
+
   const frases = [
     "HAGAMOS QUE ESTO FUNCIONE Y NO POR QUE SEA FACIL EHH, SINO POR QUE VALE LA PENA 💘",
     "Tu sonrisa es la calma para mis tormentas ✨",
@@ -39,6 +43,13 @@ function App() {
     "Contigo todo es magia ✨",
     "Eres mi refugio y mi alegría 🌹",
     "Cada latido me recuerda que te amo 💘"
+  ];
+
+  // Galería extra (aparte del álbum secreto)
+  const extraFotos = [
+    { src: "/fotos/recuerdo1.jpg", alt: "Recuerdo 1" },
+    { src: "/fotos/recuerdo2.jpg", alt: "Recuerdo 2" },
+    { src: "/fotos/recuerdo3.jpg", alt: "Recuerdo 3" }
   ];
 
   const mostrarFraseAleatoria = () => {
@@ -64,6 +75,52 @@ function App() {
 
   return (
     <div className="app" style={{ backgroundImage: "url('/fondo.jpg')" }}>
+      {/* Botón de ajustes (independiente) */}
+      <button
+        className="btn-ajustes"
+        onClick={() => setShowSettings(!showSettings)}
+        aria-label="Abrir ajustes"
+      >
+        ⚙️
+      </button>
+
+      {/* Panel de ajustes (cambiar fondo + abrir galería extra) */}
+      {showSettings && (
+        <div className="ajustes-panel">
+          <h3>Ajustes</h3>
+
+          <label htmlFor="fondo">Elegí un fondo:</label>
+          <input
+            id="fondo"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              if (file) {
+                const url = URL.createObjectURL(file);
+                document.querySelector(".app").style.backgroundImage = `url(${url})`;
+              }
+            }}
+          />
+
+          <button onClick={() => setShowExtraGallery(!showExtraGallery)}>
+            {showExtraGallery ? "Cerrar galería extra 📷" : "Abrir galería extra 📷"}
+          </button>
+        </div>
+      )}
+
+      {/* Galería extra independiente */}
+      {showExtraGallery && (
+        <div className="extra-gallery">
+          <h2>Galería de recuerdos 🌟</h2>
+          <div className="gallery-grid">
+            {extraFotos.map((foto, index) => (
+              <img key={index} src={foto.src} alt={foto.alt} />
+            ))}
+          </div>
+        </div>
+      )}
+
       <h1>Para vos, mi amor 💕</h1>
 
       <button className="btn" onClick={mostrarFraseAleatoria}>
@@ -144,7 +201,6 @@ function App() {
                       setCurrentSrc(item.musica.src);
                       audioRef.current.src = item.musica.src;
                       audioRef.current.load();
-
                       audioRef.current.oncanplaythrough = () => {
                         audioRef.current.play().catch(() => {});
                       };
