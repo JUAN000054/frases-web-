@@ -2,6 +2,25 @@ import { album } from "./data/album";
 import { useRef, useState } from "react";
 import "./App.css";
 
+function ColorPicker() {
+  const handleColorChange = (e) => {
+    document.documentElement.style.setProperty("--accent-color", e.target.value);
+  };
+
+  return (
+    <div className="color-picker">
+      <label htmlFor="accentColor">Elegí un color 💖: </label>
+      <input
+        type="color"
+        id="accentColor"
+        name="accentColor"
+        defaultValue="#f8c8dc"
+        onChange={handleColorChange}
+      />
+    </div>
+  );
+}
+
 function App() {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -126,7 +145,6 @@ function App() {
                       audioRef.current.src = item.musica.src;
                       audioRef.current.load();
 
-                      // Esperar a que el audio esté listo antes de reproducir
                       audioRef.current.oncanplaythrough = () => {
                         audioRef.current.play().catch(() => {});
                       };
@@ -148,6 +166,9 @@ function App() {
         preload="auto"
         style={{ display: "none" }}
       />
+
+      {/* Selector de colores */}
+      <ColorPicker />
 
       <footer>
         <p>HECHO CON TODO EL AMOR DEL UNIVERSO POR TU POETA✨</p>

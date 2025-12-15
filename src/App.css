@@ -465,3 +465,26 @@ audio::-webkit-media-controls-timeline {
 .boton-mi-cora:active {
   transform: scale(0.95);
 }
+:root {
+  --primary-color: rgba(255, 255, 255, 0.7); /* blanco suave translúcido */
+  --secondary-color: rgba(0, 0, 0, 0.6);     /* negro suave translúcido */
+  --accent-color: #f8c8dc;                   /* rosa pastel */
+}
+
+.app {
+  background-size: cover;
+  background-position: center;
+  color: var(--secondary-color);
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--accent-color);
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
