@@ -1,50 +1,53 @@
-// Importamos las librerías que instalaste
-import express from "express";   // servidor web
-import multer from "multer";     // subir archivos
-import cors from "cors";         // permitir conexión con tu React
+import express from "express";
+import multer from "multer";
+import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-app.use(cors()); // habilita que tu frontend pueda hablar con este backend
+app.use(express.json());
 
-// Configuración de multer: dónde y cómo guardar las fotos
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"), // carpeta donde se guardan
-  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname) // nombre único
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "para-ti-mi-reina",
+    allowed_formats: ["jpg", "png", "jpeg"]
+  }
+});
+
 const upload = multer({ storage });
 
-// Variables para recordar fondo y galería
-let background = null;
+let currentBackground = null;
 let gallery = [];
 
-// Endpoint para subir fondo
-app.post("/upload-background", upload.single("file"), (req, res) => {
-  background = `/uploads/${req.file.filename}`;
-  res.json({ url: background });
+app.post("/background", upload.single("file"), (req, res) => {
+  currentBackground = req.file.path;
+  res.json({ url: currentBackground });
 });
 
-// Endpoint para subir foto a galería
-app.post("/upload-gallery", upload.single("file"), (req, res) => {
-  const url = `/uploads/${req.file.filename}`;
-  gallery.push(url);
-  res.json({ url });
-});
-
-// Endpoint para obtener fondo actual
 app.get("/background", (req, res) => {
-  res.json({ url: background });
+  res.json({ url: currentBackground });
 });
 
-// Endpoint para obtener galería completa
+app.post("/gallery", upload.single("file"), (req, res) => {
+  const imageUrl = req.file.path;
+  gallery.push(imageUrl);
+  res.json({ url: imageUrl });
+});
+
 app.get("/gallery", (req, res) => {
-  res.json({ photos: gallery });
+  res.json({ images: gallery });
 });
 
-// Servir las imágenes guardadas
-app.use("/uploads", express.static("uploads"));
-
-// Arrancar el servidor
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
