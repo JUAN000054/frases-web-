@@ -29,28 +29,35 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage });
 
-// 🔎 Guardamos el último fondo en memoria
+// 🔒 Variables en memoria
 let currentBackground = null;
+let gallery = [];
 
-// 🔎 Rutas para fondo
+// 🔎 Subir fondo
 app.post("/background", upload.single("file"), (req, res) => {
-  currentBackground = req.file.path; // guardamos la URL pública de Cloudinary
+  if (!req.file || !req.file.path) {
+    return res.status(400).json({ error: "No se recibió imagen válida" });
+  }
+  currentBackground = req.file.path;
   res.json({ url: currentBackground });
 });
 
+// 🔎 Obtener fondo
 app.get("/background", (req, res) => {
   res.json({ url: currentBackground });
 });
 
-// 🔎 Rutas para galería
-let gallery = [];
-
+// 🔎 Subir imagen a galería
 app.post("/gallery", upload.single("file"), (req, res) => {
-  const imageUrl = req.file.path; // URL pública de Cloudinary
+  if (!req.file || !req.file.path) {
+    return res.status(400).json({ error: "No se recibió imagen válida" });
+  }
+  const imageUrl = req.file.path;
   gallery.push(imageUrl);
   res.json({ url: imageUrl });
 });
 
+// 🔎 Obtener galería
 app.get("/gallery", (req, res) => {
   res.json({ images: gallery });
 });
