@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
@@ -7,14 +8,17 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
+// Configuración de Cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
+// Configuración de Multer con Cloudinary
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
@@ -28,6 +32,7 @@ const upload = multer({ storage });
 let currentBackground = null;
 let gallery = [];
 
+// Rutas
 app.post("/background", upload.single("file"), (req, res) => {
   currentBackground = req.file.path;
   res.json({ url: currentBackground });
@@ -47,6 +52,7 @@ app.get("/gallery", (req, res) => {
   res.json({ images: gallery });
 });
 
+// Puerto
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

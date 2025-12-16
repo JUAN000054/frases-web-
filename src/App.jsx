@@ -58,10 +58,10 @@ function App() {
         ]);
 
         if (bgRes?.url) {
-          document.querySelector(".app").style.backgroundImage = `url(${API_BASE}${bgRes.url})`;
+          document.querySelector(".app").style.backgroundImage = `url(${bgRes.url})`;
         }
-        if (galRes?.photos) {
-          setExtraFotos(galRes.photos.map(url => `${API_BASE}${url}`));
+        if (galRes?.images) {
+          setExtraFotos(galRes.images);
         }
       } finally {
         setIsLoading(false);
@@ -77,13 +77,13 @@ function App() {
     const form = new FormData();
     form.append("file", file);
 
-    const res = await fetch(`${API_BASE}/upload-background`, {
+    const res = await fetch(`${API_BASE}/background`, {
       method: "POST",
       body: form,
     });
     const data = await res.json();
     if (data?.url) {
-      document.querySelector(".app").style.backgroundImage = `url(${API_BASE}${data.url})`;
+      document.querySelector(".app").style.backgroundImage = `url(${data.url})`;
     }
   };
 
@@ -94,13 +94,13 @@ function App() {
     const form = new FormData();
     form.append("file", file);
 
-    const res = await fetch(`${API_BASE}/upload-gallery`, {
+    const res = await fetch(`${API_BASE}/gallery`, {
       method: "POST",
       body: form,
     });
     const data = await res.json();
     if (data?.url) {
-      setExtraFotos(prev => [...prev, `${API_BASE}${data.url}`]);
+      setExtraFotos(prev => [...prev, data.url]);
     }
   };
 
@@ -251,8 +251,7 @@ function App() {
         </div>
       )}
 
-      {/* Reproduct
-       {/* Reproductor oculto */}
+      {/* Reproductor oculto */}
       <audio
         ref={audioRef}
         src={currentSrc}
