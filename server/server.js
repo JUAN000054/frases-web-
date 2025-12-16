@@ -29,15 +29,17 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage });
 
+// 🔎 Guardamos el último fondo en memoria
+let currentBackground = null;
+
 // 🔎 Rutas para fondo
 app.post("/background", upload.single("file"), (req, res) => {
-  // Cloudinary devuelve la URL pública en req.file.path
-  res.json({ url: req.file.path });
+  currentBackground = req.file.path; // guardamos la URL pública
+  res.json({ url: currentBackground });
 });
 
 app.get("/background", (req, res) => {
-  // Ya no usamos variables temporales, el frontend guarda el fondo directamente
-  res.json({ url: null });
+  res.json({ url: currentBackground });
 });
 
 // 🔎 Rutas para galería
