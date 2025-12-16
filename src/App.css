@@ -1,17 +1,4 @@
-/* Importación de fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;500;700&display=swap');
-
-:root {
-  --rosa: #ff9a9e;
-  --rosa-claro: #ff0808;
-  --texto: #fa0707ef;
-  --blanco: #f707e3ee;
-}
-
-* {
-  box-sizing: border-box;
-}
-
+/* Fondo principal */
 .app {
   min-height: 100vh;
   display: flex;
@@ -21,758 +8,117 @@
   position: relative;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-}
-
-/* Capa oscura para contraste */
-.app::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: transparent; /* sin color encima */
-  backdrop-filter: none;   /* sin desenfoque */
-  pointer-events: none;
-}
-
-
-.app > * {
-  position: relative;
-  z-index: 1;
-}
-
-h1 {
-  font-family: 'Great Vibes', cursive;
-  color: rgba(235, 240, 250, 0.933);
-  font-size: 48px;
-  margin-bottom: 12px;
-  text-shadow: 0 3px 6px rgba(241, 5, 159, 0.4);
-}
-
-/* Botones elegantes */
-.btn {
-  margin: 8px;
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: none;
-  background: rgba(255, 255, 255, 0.85);
-  color: #f50505;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-}
-
-/* Frase actual destacada */
-.frase-card {
-  font-size: 22px;
-  font-weight: bold;
-  color: #fff;
-  background: rgba(255, 105, 180, 0.7);
-  padding: 16px;
-  border-radius: 12px;
-  margin: 20px 0;
-  text-align: center;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-  animation: aparecer 0.6s ease-out;
-}
-
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Lista de frases */
-.lista {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  width: 100%;
-  max-width: 900px;
-}
-
-.lista .frase-card {
-  font-size: 16px;
-  font-weight: normal;
-  background: rgba(255,255,255,0.85);
-  color: var(--texto);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background-repeat: no-repeat;
 }
 
 /* Carta romántica */
-.carta-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 28px;
-  padding: 0 16px;
-}
-
 .carta {
-  background: linear-gradient(135deg, #ffe0f0, #fff);
-  border: 2px solid #ff99cc;
-  border-radius: 14px;
+  background: pink;               /* fondo rosa */
+  border: 3px solid black;        /* bordes negros */
   padding: 20px;
-  max-width: 680px;
-  box-shadow: 0 10px 24px rgba(255, 153, 204, 0.35);
-  animation: carta-aparece 650ms ease-out;
-}
-
-.carta h2 {
-  color: #ff3399;
-  font-family: "Georgia", "Times New Roman", serif;
+  border-radius: 12px;
+  max-width: 600px;
   text-align: center;
-  margin-bottom: 12px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+.carta h2,
 .carta p {
-  font-size: 18px;
-  line-height: 1.65;
-  color: #111111d0;
-  text-align: center;
-  margin: 10px 0;
-}
-
-.firma {
-  margin-top: 16px;
-  font-style: italic;
-  color: #f60471;
-  text-align: right;
-}
-
-@keyframes carta-aparece {
-  from {
-    opacity: 0;
-    transform: translateY(22px) scale(0.98);
-    filter: blur(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-/* Estilo especial para el botón del archivo secreto */
-.btn-secret {
-  background-color: #222;
-  color: #ff00e1;
-  font-size: 1.2rem;
-  padding: 12px 20px;
-  border: 2px solid #ff0000;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 20px;
-}
-
-.btn-secret:hover {
-  background-color: #444;
-  color: #fff;
-  border-color: #fff;
-  transform: scale(1.05);
-}
-
-/* 🌹 Estilo para la carta larga dentro del modal */
-.modal-carta.ultima-carta {
-  max-height: 300px;
-  overflow-y: auto;
-  padding-right: 10px;
-  line-height: 1.6;
-  font-size: 1.1rem;
-  text-align: left;
-  white-space: pre-line;
-  scrollbar-width: thin;
-  scrollbar-color: #ff4d6d #111;
-}
-.album {
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-.album-photos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-}
-
-.album-photos img {
-  width: 220px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-.album-music {
-  margin-top: 20px;
-  display: grid;
-  gap: 12px;
-  justify-content: center;
-}
-
-.album-music audio {
-  width: 280px;
-}
-
-/* Fondo general */
-.app {
-  min-height: 100vh;
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-  color: #ffffffe5;
-  font-family: 'Segoe UI', sans-serif;
-  padding: 20px;
-}
-
-/* Botones */
-.btn {
-  margin: 8px;
-  padding: 10px 20px;
-  background: #ff4d6d;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-.btn:hover {
-  background: #e63e5c;
+  color: black;                   /* letras negras */
+  font-weight: bold;              /* negrita */
 }
 
 /* Frases */
 .frase-actual {
-  margin: 20px 0;
+  margin: 20px;
   font-size: 1.3rem;
   font-style: italic;
-  color: #ffe6f0;
-}
-
-/* Carta romántica */
-.carta-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-.carta {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 700px;
-  text-align: left;
-  line-height: 1.6;
-}
-.carta h2 {
   text-align: center;
-  margin-bottom: 15px;
-  color: #ffd6e0;
-}
-.carta .firma {
-  text-align: right;
-  font-weight: bold;
-  margin-top: 15px;
-  color: #fb00c5;
+  color: fuchsia;                 /* letras fucsia */
 }
 
-/* Álbum secreto */
-.album {
-  margin-top: 30px;
-}
-.album h2 {
-  margin-bottom: 20px;
-  color: #ffd6e0;
-}
-.album-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
-}
-.album-item {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-.album-item:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.2);
-}
-.album-item img {
-  width: 100%;
-  border-radius: 8px;
-}
-.album-item p {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #ffe6f0;
-}
-
-/* Footer */
-footer {
-  margin-top: 40px;
-  font-size: 0.9rem;
-  color: #ffd6e0;
-}
-
-.carta {
-  background: pink;          /* fondo rosa */
-  border: 3px solid black;   /* bordes negros */
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 700px;
-  text-align: left;
-  line-height: 1.6;
-  color: black;              /* letras negras */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-.carta {
-  background: pink;          /* fondo rosa */
-  border: 3px solid black;   /* bordes negros */
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 700px;
-  text-align: left;
-  line-height: 1.6;
-  color: black;              /* letras negras */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-.btn-cora {
-  margin-top: 10px;
-  padding: 8px 16px;
-  background: #ff4d6d;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.btn-cora:hover {
-  background: #e63e5c;
-}
-.app {
-  min-height: 100vh;
-  background-size: cover;
-  background-position: center;
-  padding: 20px;
-}
-
+/* Botones principales */
 .btn {
-  margin: 6px;
-  padding: 8px 14px;
-  background: #e8e5ec;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.frase-actual {
-  margin: 10px 0;
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-}
-/* Reproductor de audio romántico */
-audio {
-  width: 100%;
-  max-width: 400px;
-  margin: 20px auto;
-  display: block;
-  border: 3px solid black;
-  border-radius: 10px;
-  background-color: #ff1493; /* rosa intenso */
-  color: black;
-}
-
-/* Botones internos del reproductor */
-audio::-webkit-media-controls-panel {
-  background-color: #ff1493; /* rosa intenso */
-  color: black;
-}
-
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-pause-button,
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-volume-slider,
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display {
-  color: black;
-  background-color: #ff1493;
-}
-
-/* Barra de progreso */
-audio::-webkit-media-controls-timeline {
-  background-color: black;
-  border-radius: 5px;
-}
-/* Botón Activar sonido romántico */
-.boton-activar-sonido {
-  background-color: #ff1493; /* rosa intenso */
-  color: black;
-  font-weight: bold;
-  font-size: 1.1rem;
-  padding: 12px 24px;
-  border: 2px solid black;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-/* Efecto hover */
-.boton-activar-sonido:hover {
-  background-color: black;
-  color: #ff1493;
-  transform: scale(1.05);
-}
-
-/* Efecto al hacer click */
-.boton-activar-sonido:active {
-  transform: scale(0.95);
-}
-/* Botones MI CORA ❤️ */
-.boton-mi-cora {
-  background-color: #ff1493; /* rosa intenso */
-  color: black;
-  font-weight: bold;
-  font-size: 1rem;
+  margin: 10px;
   padding: 10px 20px;
-  margin: 8px;
-  border: 2px solid black;
+  border: 2px solid black;        /* contorno negro */
   border-radius: 8px;
+  background: #b30059;            /* rosa oscuro */
+  color: black;                   /* letras negras */
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-/* Hover: invertimos colores */
-.boton-mi-cora:hover {
-  background-color: black;
-  color: #ff1493;
-  transform: scale(1.05);
-}
-
-/* Active: efecto de click */
-.boton-mi-cora:active {
-  transform: scale(0.95);
-}
-:root {
-  --primary-color: rgba(255, 255, 255, 0.7); /* blanco suave translúcido */
-  --secondary-color: rgba(0, 0, 0, 0.6);     /* negro suave translúcido */
-  --accent-color: #f8c8dc;                   /* rosa pastel */
-}
-
-.app {
-  background-size: cover;
-  background-position: center;
-  color: var(--secondary-color);
-}
-
-.btn {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  border: 1px solid var(--accent-color);
-  transition: 0.3s;
+  transition: transform 0.2s;
 }
 
 .btn:hover {
-  background-color: var(--accent-color);
-  color: white;
-}
-/* Fondo principal */
-.app {
-  position: relative;
-  min-height: 100vh;
-  background-size: cover;       /* que la foto cubra toda la pantalla */
-  background-position: center;  /* centrada siempre */
-  background-repeat: no-repeat; /* sin repetirse */
-  color: var(--secondary-color, #000);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 20px;
+  transform: scale(1.05);
 }
 
-/* Quitar cualquier capa encima de la foto */
-.app::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: transparent; /* sin color encima */
-  backdrop-filter: none;   /* sin desenfoque */
-  pointer-events: none;
-}
-
-/* Botón de ajustes */
-.btn-ajustes {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(255,255,255,0.6);
-  border: none;
-  padding: 8px;
-  border-radius: 50%;
+/* Botón del álbum secreto */
+.btn-cora {
+  margin-top: 8px;
+  padding: 5px 10px;
+  background: #b30059;            /* rosa oscuro */
+  color: black;                   /* letras negras */
+  border: 2px solid black;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 18px;
-  transition: background 0.3s ease;
-}
-.btn-ajustes:hover {
-  background: rgba(255,255,255,0.9);
+  font-weight: bold;
 }
 
 /* Panel de ajustes */
 .ajustes-panel {
-  position: absolute;
-  top: 50px;
-  left: 10px;
-  background: rgba(255,255,255,0.9);
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #000;               /* panel negro */
+  color: #fff;                    /* letras blancas */
   padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(255,255,255,0.3);
+  z-index: 100;
+}
+
+.ajustes-panel h3,
+.ajustes-panel label {
+  color: #fff;                    /* letras blancas claras */
+}
+
+.btn-ajustes {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
 }
 
 /* Galería extra */
 .extra-gallery {
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: center;
 }
+
 .gallery-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
 }
+
 .gallery-grid img {
-  width: 120px;
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
-}
-.gallery-grid img:hover {
-  transform: scale(1.05);
-}
-
-/* Botones generales */
-.btn {
-  background-color: rgba(255, 255, 255, 0.3);
-  border: 1px solid var(--accent-color, #f8c8dc);
-  padding: 10px 15px;
-  margin: 5px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-.btn:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-}
-
-/* Botón MI CORA */
-.btn-cora {
-  background-color: var(--accent-color, #f8c8dc);
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: transform 0.3s ease;
-}
-.btn-cora:hover {
-  transform: scale(1.1);
-}
-
-/* Carta */
-.carta-container {
-  margin-top: 20px;
-  max-width: 800px;
-}
-.carta {
-  background: rgba(255,255,255,0.85);
-  padding: 20px;
-  border-radius: 10px;
-  line-height: 1.6;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-.carta h2 {
-  margin-bottom: 15px;
-}
-.carta .firma {
-  margin-top: 20px;
-  font-style: italic;
-  text-align: right;
-}
-
-/* Frases */
-.frase-actual {
-  margin: 15px 0;
-  font-size: 1.2em;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* Selector de colores */
-.color-picker {
-  margin-top: 20px;
-  text-align: center;
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #b30059;      /* borde rosa oscuro */
 }
 
 /* Footer */
 footer {
   margin-top: auto;
-  padding: 10px;
+  padding: 15px;
   text-align: center;
-  font-size: 0.9em;
-  color: #333;
-}
-/* Panel de ajustes refinado */
-.ajustes-panel {
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  background: rgba(255,255,255,0.95);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  width: 250px;
-  animation: fadeIn 0.4s ease;
-  z-index: 20;
-}
-
-.ajustes-panel h3 {
-  margin-top: 0;
-  font-size: 1.2em;
-  color: var(--accent-color, #f8c8dc);
-  text-align: center;
-}
-
-.ajustes-panel label {
-  display: block;
-  margin: 10px 0 5px;
-  font-size: 0.9em;
-  color: #333;
-}
-
-.ajustes-panel input[type="file"] {
-  width: 100%;
-  font-size: 0.85em;
-}
-
-.ajustes-panel button {
-  margin-top: 12px;
-  width: 100%;
-  background: var(--accent-color, #f8c8dc);
-  border: none;
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.ajustes-panel button:hover {
-  background: #ffb6c1;
-}
-
-/* Animación */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Botón de cierre dentro del panel */
-.ajustes-close {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-.ajustes-panel {
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  background: rgba(255,255,255,0.95);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  width: 260px;
-  animation: fadeIn 0.4s ease;
-  z-index: 20;
-}
-
-.ajustes-panel h3 {
-  margin-top: 0;
-  font-size: 1.3em;
-  color: var(--accent-color, #f8c8dc);
-  text-align: center;
-}
-
-.ajustes-panel label {
-  display: block;
-  margin: 12px 0 6px;
-  font-size: 0.95em;
-  color: #444;
-}
-
-.ajustes-panel input[type="file"] {
-  width: 100%;
-  font-size: 0.85em;
-}
-
-.ajustes-panel button {
-  margin-top: 14px;
-  width: 100%;
-  background: var(--accent-color, #f8c8dc);
-  border: none;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.95em;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.ajustes-panel button:hover {
-  background: #ffb6c1;
-  transform: scale(1.03);
-}
-
-.ajustes-close {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.ajustes-panel {
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  background: rgba(255, 182, 193, 0.95); /* rosa suave */
-  color: #222; /* letras oscuras */
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  width: 260px;
-  animation: fadeIn 0.4s ease;
-  z-index: 20;
+  font-size: 0.9rem;
+  color: black;
+  font-weight: bold;
 }

@@ -29,21 +29,22 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage });
 
-let currentBackground = null;
-let gallery = [];
-
-// Rutas
+// 🔎 Rutas para fondo
 app.post("/background", upload.single("file"), (req, res) => {
-  currentBackground = req.file.path;
-  res.json({ url: currentBackground });
+  // Cloudinary devuelve la URL pública en req.file.path
+  res.json({ url: req.file.path });
 });
 
 app.get("/background", (req, res) => {
-  res.json({ url: currentBackground });
+  // Ya no usamos variables temporales, el frontend guarda el fondo directamente
+  res.json({ url: null });
 });
 
+// 🔎 Rutas para galería
+let gallery = [];
+
 app.post("/gallery", upload.single("file"), (req, res) => {
-  const imageUrl = req.file.path;
+  const imageUrl = req.file.path; // URL pública de Cloudinary
   gallery.push(imageUrl);
   res.json({ url: imageUrl });
 });

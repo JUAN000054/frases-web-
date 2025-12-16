@@ -32,7 +32,7 @@ function App() {
   const [showGallery, setShowGallery] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(null);
 
-  // Estados nuevos para ajustes
+  // Ajustes
   const [showSettings, setShowSettings] = useState(false);
   const [showExtraGallery, setShowExtraGallery] = useState(false);
 
@@ -48,13 +48,13 @@ function App() {
     "Cada latido me recuerda que te amo 💘"
   ];
 
-  // 🔎 Al cargar la app, pedimos al servidor el fondo y la galería
+  // Cargar fondo y galería
   useEffect(() => {
     async function loadData() {
       try {
         const [bgRes, galRes] = await Promise.all([
-          fetch(`${API_BASE}/background`).then(r => r.json()),
-          fetch(`${API_BASE}/gallery`).then(r => r.json()),
+          fetch(`${API_BASE}/background`).then((r) => r.json()),
+          fetch(`${API_BASE}/gallery`).then((r) => r.json()),
         ]);
 
         if (bgRes?.url) {
@@ -70,7 +70,7 @@ function App() {
     loadData();
   }, []);
 
-  // 🔎 Función para subir nuevo fondo
+  // Subir nuevo fondo
   const handleBackgroundUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -87,7 +87,7 @@ function App() {
     }
   };
 
-  // 🔎 Función para subir foto a la galería
+  // Subir foto a la galería
   const handleGalleryUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -100,7 +100,7 @@ function App() {
     });
     const data = await res.json();
     if (data?.url) {
-      setExtraFotos(prev => [...prev, data.url]);
+      setExtraFotos((prev) => [...prev, data.url]);
     }
   };
 
@@ -141,7 +141,7 @@ function App() {
         <div className="ajustes-panel">
           <button className="ajustes-close" onClick={() => setShowSettings(false)}>❌</button>
           <h3>⚙️ Ajustes</h3>
-          
+
           <label htmlFor="fondo"><strong>🖼️ Fondo de pantalla:</strong></label>
           <input
             id="fondo"
