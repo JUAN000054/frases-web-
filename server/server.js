@@ -34,7 +34,7 @@ let currentBackground = null;
 
 // 🔎 Rutas para fondo
 app.post("/background", upload.single("file"), (req, res) => {
-  currentBackground = req.file.path; // guardamos la URL pública
+  currentBackground = req.file.path; // guardamos la URL pública de Cloudinary
   res.json({ url: currentBackground });
 });
 
