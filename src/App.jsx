@@ -2,6 +2,7 @@ import { album } from "./data/album";
 import { useRef, useState, useEffect } from "react";
 import "./App.css";
 import { API_BASE } from "./config";
+import UploadImage from "./component/UploadImage"; // 👈 nuevo import
 
 function ColorPicker() {
   const handleColorChange = (e) => {
@@ -48,7 +49,7 @@ function App() {
     "Cada latido me recuerda que te amo 💘"
   ];
 
-  // Cargar fondo y galería
+  // Cargar fondo y galería desde backend
   useEffect(() => {
     async function loadData() {
       try {
@@ -69,40 +70,6 @@ function App() {
     }
     loadData();
   }, []);
-
-  // Subir nuevo fondo
-  const handleBackgroundUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const form = new FormData();
-    form.append("file", file);
-
-    const res = await fetch(`${API_BASE}/background`, {
-      method: "POST",
-      body: form,
-    });
-    const data = await res.json();
-    if (data?.url) {
-      document.querySelector(".app").style.backgroundImage = `url(${data.url})`;
-    }
-  };
-
-  // Subir foto a la galería
-  const handleGalleryUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const form = new FormData();
-    form.append("file", file);
-
-    const res = await fetch(`${API_BASE}/gallery`, {
-      method: "POST",
-      body: form,
-    });
-    const data = await res.json();
-    if (data?.url) {
-      setExtraFotos((prev) => [...prev, data.url]);
-    }
-  };
 
   const mostrarFraseAleatoria = () => {
     const indice = Math.floor(Math.random() * frases.length);
@@ -142,22 +109,12 @@ function App() {
           <button className="ajustes-close" onClick={() => setShowSettings(false)}>❌</button>
           <h3>⚙️ Ajustes</h3>
 
-          <label htmlFor="fondo"><strong>🖼️ Fondo de pantalla:</strong></label>
-          <input
-            id="fondo"
-            type="file"
-            accept="image/*"
-            onChange={handleBackgroundUpload}
-          />
+          <strong>🖼️ Fondo de pantalla:</strong>
+          <UploadImage type="fondo" backendUrl={API_BASE} />
 
           <div style={{ marginTop: "15px" }}>
-            <label htmlFor="galeria"><strong>📷 Agregar foto a galería:</strong></label>
-            <input
-              id="galeria"
-              type="file"
-              accept="image/*"
-              onChange={handleGalleryUpload}
-            />
+            <strong>📷 Agregar foto a galería:</strong>
+            <UploadImage type="galeria" backendUrl={API_BASE} />
           </div>
 
           <div style={{ marginTop: "15px" }}>
