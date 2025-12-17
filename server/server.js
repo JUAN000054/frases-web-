@@ -1,69 +1,72 @@
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
-import multer from "multer";
-import { v2 as cloudinary } from "cloudinary";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
 import dotenv from "dotenv";
 
+import Image from "./models/Image.js";
+import Background from "./models/Background.js";
 dotenv.config();
+console.log("MONGO_URI:", process.env.MONGO_URI);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configuración de Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-});
+// Conexión a MongoDB Atlas
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ Conectado a MongoDB Atlas"))
+  .catch((err) => console.error("❌ Error al conectar a MongoDB:", err));
 
-// Configuración de Multer con Cloudinary
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: "para-ti-mi-reina",
-    allowed_formats: ["jpg", "png", "jpeg"]
+// --- Rutas --- //
+app.get("/api/imagenes", async (req, res) => {
+  try {
+    const imagenes = await Image.find().sort({ createdAt: -1 });
+    res.json(imagenes);
+  } catch (err) {
+    res.status(500).json({ error: "Error al obtener imágenes" });
   }
 });
 
-const upload = multer({ storage });
+app.post("/api/imagenes", async (req, res) => {
+  try {
+    const { url } = req.body;
+    if (!url) return res.status(400).json({ error: "Falta la URL" });
 
-// 🔒 Variables en memoria
-let currentBackground = null;
-let gallery = [];
-
-// 🔎 Subir fondo
-app.post("/background", upload.single("file"), (req, res) => {
-  if (!req.file || !req.file.path) {
-    return res.status(400).json({ error: "No se recibió imagen válida" });
+    const nueva = await Image.create({ url });
+    res.json(nueva);
+  } catch (err) {
+    res.status(500).json({ error: "Error al guardar imagen" });
   }
-  currentBackground = req.file.path;
-  res.json({ url: currentBackground });
 });
 
-// 🔎 Obtener fondo
-app.get("/background", (req, res) => {
-  res.json({ url: currentBackground });
-});
-
-// 🔎 Subir imagen a galería
-app.post("/gallery", upload.single("file"), (req, res) => {
-  if (!req.file || !req.file.path) {
-    return res.status(400).json({ error: "No se recibió imagen válida" });
+app.get("/api/fondo", async (req, res) => {
+  try {
+    const fondo = await Background.findOne().sort({ updatedAt: -1 });
+    res.json(fondo || null);
+  } catch (err) {
+    res.status(500).json({ error: "Error al obtener fondo" });
   }
-  const imageUrl = req.file.path;
-  gallery.push(imageUrl);
-  res.json({ url: imageUrl });
 });
 
-// 🔎 Obtener galería
-app.get("/gallery", (req, res) => {
-  res.json({ images: gallery });
+app.put("/api/fondo", async (req, res) => {
+  try {
+    const { url } = req.body;
+    if (!url) return res.status(400).json({ error: "Falta la URL" });
+
+    let fondo = await Background.findOne();
+    if (fondo) {
+      fondo.url = url;
+      fondo.updatedAt = new Date();
+      await fondo.save();
+    } else {
+      fondo = await Background.create({ url });
+    }
+    res.json(fondo);
+  } catch (err) {
+    res.status(500).json({ error: "Error al actualizar fondo" });
+  }
 });
 
-// Puerto
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`🚀 Servidor corriendo en puerto ${PORT}`));
