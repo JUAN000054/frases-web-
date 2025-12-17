@@ -2,7 +2,7 @@ import { album } from "./data/album";
 import { useRef, useState, useEffect } from "react";
 import "./App.css";
 import { API_BASE } from "./config";
-import UploadImage from "./component/UploadImage"; // 👈 nuevo import
+import UploadImage from './components/UploadImage';
 
 function ColorPicker() {
   const handleColorChange = (e) => {
