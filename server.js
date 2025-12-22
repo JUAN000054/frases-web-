@@ -9,7 +9,18 @@ import Background from "./models/Background.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+// ✅ CORS configurado para Vercel + local
+app.use(cors({
+  origin: [
+    "https://frases-web-chi.vercel.app", // tu frontend en Vercel
+    "http://localhost:5173",             // por si probás en local
+    "http://localhost:3000"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+}));
+
 app.use(express.json());
 
 // ✅ Conexión a MongoDB Atlas
