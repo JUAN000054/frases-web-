@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: frases-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGO_URI
+        value: TU_CONEXION_DE_ATLAS
+      - key: CLOUDINARY_URL
+        value: TU_URL_DE_CLOUDINARY

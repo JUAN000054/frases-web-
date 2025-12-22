@@ -5,20 +5,20 @@ import dotenv from "dotenv";
 
 import Image from "./models/Image.js";
 import Background from "./models/Background.js";
+
 dotenv.config();
-console.log("MONGO_URI:", process.env.MONGO_URI);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MongoDB Atlas
+// ✅ Conexión a MongoDB Atlas
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Conectado a MongoDB Atlas"))
   .catch((err) => console.error("❌ Error al conectar a MongoDB:", err));
 
-// --- Rutas --- //
+// ✅ Obtener todas las imágenes
 app.get("/api/imagenes", async (req, res) => {
   try {
     const imagenes = await Image.find().sort({ createdAt: -1 });
@@ -28,6 +28,7 @@ app.get("/api/imagenes", async (req, res) => {
   }
 });
 
+// ✅ Guardar una nueva imagen
 app.post("/api/imagenes", async (req, res) => {
   try {
     const { url } = req.body;
@@ -40,6 +41,7 @@ app.post("/api/imagenes", async (req, res) => {
   }
 });
 
+// ✅ Obtener fondo actual
 app.get("/api/fondo", async (req, res) => {
   try {
     const fondo = await Background.findOne().sort({ updatedAt: -1 });
@@ -49,6 +51,7 @@ app.get("/api/fondo", async (req, res) => {
   }
 });
 
+// ✅ Actualizar fondo
 app.put("/api/fondo", async (req, res) => {
   try {
     const { url } = req.body;
@@ -62,11 +65,13 @@ app.put("/api/fondo", async (req, res) => {
     } else {
       fondo = await Background.create({ url });
     }
+
     res.json(fondo);
   } catch (err) {
     res.status(500).json({ error: "Error al actualizar fondo" });
   }
 });
 
+// ✅ Puerto para Railway
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`🚀 Servidor corriendo en puerto ${PORT}`));
