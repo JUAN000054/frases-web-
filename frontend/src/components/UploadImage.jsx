@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 const UploadImage = ({
   type = "galeria",
@@ -16,34 +15,48 @@ const UploadImage = ({
     try {
       console.log("📤 Subiendo a Cloudinary...");
 
-      // 1. Subir a Cloudinary
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "frases_wed_belen");
 
-      const cloudinaryRes = await axios.post(
+      // Subida a Cloudinary usando fetch
+      const cloudinaryRes = await fetch(
         "https://api.cloudinary.com/v1_1/duvquzl9n/image/upload",
-        formData
+        {
+          method: "POST",
+          body: formData
+        }
       );
 
-      console.log("✅ Cloudinary respondió:", cloudinaryRes.data);
+      const data = await cloudinaryRes.json();
+      console.log("Cloudinary respondió:", data);
 
-      const imageUrl = cloudinaryRes.data.secure_url;
-
-      // 2. Guardar en tu backend
-      if (type === "galeria") {
-        console.log("📨 Enviando a backend /api/imagenes...");
-        await axios.post(`${backendUrl}/api/imagenes`, { url: imageUrl });
-      } else if (type === "fondo") {
-        console.log("📨 Enviando a backend /api/fondo...");
-        await axios.put(`${backendUrl}/api/fondo`, { url: imageUrl });
+      if (!data.secure_url) {
+        throw new Error("Cloudinary no devolvió secure_url");
       }
 
-      alert("Imagen subida y guardada correctamente 🚀");
+      const imageUrl = data.secure_url;
+
+      // Guardar en tu backend
+      if (type === "galeria") {
+        await fetch(`${backendUrl}/api/imagenes`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url: imageUrl })
+        });
+      } else if (type === "fondo") {
+        await fetch(`${backendUrl}/api/fondo`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url: imageUrl })
+        });
+      }
+
+      alert("Imagen subida correctamente 🚀");
       setFile(null);
 
     } catch (err) {
-      console.error("❌ Error en subida:", err);
+      console.error("❌ Error:", err);
       alert("Error al subir la imagen");
     } finally {
       setLoading(false);
