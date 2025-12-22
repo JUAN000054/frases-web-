@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const UploadImage = ({ type = "galeria", backendUrl = "http://localhost:3001" }) => {
+const UploadImage = ({ 
+  type = "galeria", 
+  backendUrl = "https://frases-backend-production.up.railway.app" 
+}) => {
+
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -13,9 +17,10 @@ const UploadImage = ({ type = "galeria", backendUrl = "http://localhost:3001" })
       // 1. Subir a Cloudinary
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "frases_wed_belen"); // 👈 tu upload preset
+      formData.append("upload_preset", "frases_wed_belen");
+
       const cloudinaryRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/duvquzl9n/image/upload", // 👈 tu cloud name
+        "https://api.cloudinary.com/v1_1/duvquzl9n/image/upload",
         formData
       );
 
@@ -30,6 +35,7 @@ const UploadImage = ({ type = "galeria", backendUrl = "http://localhost:3001" })
 
       alert("Imagen subida y guardada correctamente 🚀");
       setFile(null);
+
     } catch (err) {
       console.error(err);
       alert("Error al subir la imagen");
