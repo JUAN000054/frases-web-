@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const UploadImage = ({ 
-  type = "galeria", 
-  backendUrl = "https://frases-backend-production.up.railway.app" 
+const UploadImage = ({
+  type = "galeria",
+  backendUrl = "https://frases-backend-production.up.railway.app"
 }) => {
 
   const [file, setFile] = useState(null);
@@ -14,6 +14,8 @@ const UploadImage = ({
     setLoading(true);
 
     try {
+      console.log("📤 Subiendo a Cloudinary...");
+
       // 1. Subir a Cloudinary
       const formData = new FormData();
       formData.append("file", file);
@@ -24,12 +26,16 @@ const UploadImage = ({
         formData
       );
 
+      console.log("✅ Cloudinary respondió:", cloudinaryRes.data);
+
       const imageUrl = cloudinaryRes.data.secure_url;
 
       // 2. Guardar en tu backend
       if (type === "galeria") {
+        console.log("📨 Enviando a backend /api/imagenes...");
         await axios.post(`${backendUrl}/api/imagenes`, { url: imageUrl });
       } else if (type === "fondo") {
+        console.log("📨 Enviando a backend /api/fondo...");
         await axios.put(`${backendUrl}/api/fondo`, { url: imageUrl });
       }
 
@@ -37,7 +43,7 @@ const UploadImage = ({
       setFile(null);
 
     } catch (err) {
-      console.error(err);
+      console.error("❌ Error en subida:", err);
       alert("Error al subir la imagen");
     } finally {
       setLoading(false);
