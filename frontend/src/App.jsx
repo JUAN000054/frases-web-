@@ -32,6 +32,7 @@ function App() {
   const [indiceFrase, setIndiceFrase] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(null);
+  const [fullscreenImg, setFullscreenImg] = useState(null);
 
   // Ajustes
   const [showSettings, setShowSettings] = useState(false);
@@ -51,30 +52,30 @@ function App() {
 
   // Cargar fondo y galería desde backend
   useEffect(() => {
-  async function loadData() {
-    try {
-      const [bgRes, galRes] = await Promise.all([
-        fetch(`${API_BASE}/api/fondo`).then((r) => r.json()),
-        fetch(`${API_BASE}/api/imagenes`).then((r) => r.json()),
-      ]);
+    async function loadData() {
+      try {
+        const [bgRes, galRes] = await Promise.all([
+          fetch(`${API_BASE}/api/fondo`).then((r) => r.json()),
+          fetch(`${API_BASE}/api/imagenes`).then((r) => r.json()),
+        ]);
 
-      // Fondo
-      if (bgRes?.url) {
-        document.querySelector(".app").style.backgroundImage = `url(${bgRes.url})`;
+        // Fondo
+        if (bgRes?.url) {
+          document.querySelector(".app").style.backgroundImage = `url(${bgRes.url})`;
+        }
+
+        // Galería
+        if (Array.isArray(galRes)) {
+          setExtraFotos(galRes.map((img) => img.url));
+        }
+
+      } finally {
+        setIsLoading(false);
       }
-
-      // Galería
-      if (Array.isArray(galRes)) {
-        setExtraFotos(galRes.map((img) => img.url));
-      }
-
-    } finally {
-      setIsLoading(false);
     }
-  }
 
-  loadData();
-}, []);
+    loadData();
+  }, []);
 
   const mostrarFraseAleatoria = () => {
     const indice = Math.floor(Math.random() * frases.length);
@@ -139,7 +140,12 @@ function App() {
           ) : (
             <div className="gallery-grid">
               {extraFotos.map((src, index) => (
-                <img key={index} src={src} alt={`Recuerdo ${index + 1}`} />
+                <img
+                  key={index}
+                  src={src}
+                  alt={`Recuerdo ${index + 1}`}
+                  onClick={() => setFullscreenImg(src)}
+                />
               ))}
             </div>
           )}
@@ -190,7 +196,11 @@ function App() {
           <div className="album-grid">
             {album.map((item) => (
               <div key={item.id} className="album-item">
-                <img src={item.foto.src} alt={item.foto.alt} />
+                <img
+                  src={item.foto.src}
+                  alt={item.foto.alt}
+                  onClick={() => setFullscreenImg(item.foto.src)}
+                />
                 <button
                   className="btn-cora"
                   onClick={() => {
@@ -223,6 +233,13 @@ function App() {
 
       {/* Selector de colores */}
       <ColorPicker />
+
+      {/* Fullscreen de imágenes */}
+      {fullscreenImg && (
+        <div className="fullscreen" onClick={() => setFullscreenImg(null)}>
+          <img src={fullscreenImg} alt="fullscreen" />
+        </div>
+      )}
 
       <footer>
         <p>HECHO CON TODO EL AMOR DEL UNIVERSO POR TU POETA✨</p>
