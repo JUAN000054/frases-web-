@@ -29,7 +29,12 @@ mongoose
   .then(() => console.log("✅ Conectado a MongoDB Atlas"))
   .catch((err) => console.error("❌ Error al conectar a MongoDB:", err));
 
-// ✅ Obtener todas las imágenes
+
+// ===============================
+// 📌 RUTAS DE IMÁGENES
+// ===============================
+
+// Obtener todas las imágenes
 app.get("/api/imagenes", async (req, res) => {
   try {
     const imagenes = await Image.find().sort({ createdAt: -1 });
@@ -39,7 +44,7 @@ app.get("/api/imagenes", async (req, res) => {
   }
 });
 
-// ✅ Guardar una nueva imagen
+// Guardar una nueva imagen
 app.post("/api/imagenes", async (req, res) => {
   try {
     const { url } = req.body;
@@ -52,23 +57,35 @@ app.post("/api/imagenes", async (req, res) => {
   }
 });
 
-// ✅ Obtener fondo actual
+
+// ===============================
+// 📌 RUTAS DE FONDO (CORREGIDAS)
+// ===============================
+
+// Obtener fondo actual (crea uno vacío si no existe)
 app.get("/api/fondo", async (req, res) => {
   try {
-    const fondo = await Background.findOne().sort({ updatedAt: -1 });
-    res.json(fondo || null);
+    let fondo = await Background.findOne().sort({ updatedAt: -1 });
+
+    // Si no existe, lo creamos vacío
+    if (!fondo) {
+      fondo = await Background.create({ url: "" });
+    }
+
+    res.json(fondo);
   } catch (err) {
     res.status(500).json({ error: "Error al obtener fondo" });
   }
 });
 
-// ✅ Actualizar fondo
+// Actualizar fondo
 app.put("/api/fondo", async (req, res) => {
   try {
     const { url } = req.body;
     if (!url) return res.status(400).json({ error: "Falta la URL" });
 
     let fondo = await Background.findOne();
+
     if (fondo) {
       fondo.url = url;
       fondo.updatedAt = new Date();
@@ -83,6 +100,9 @@ app.put("/api/fondo", async (req, res) => {
   }
 });
 
-// ✅ Puerto para Railway
+
+// ===============================
+// 🚀 Servidor
+// ===============================
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`🚀 Servidor corriendo en puerto ${PORT}`));
