@@ -17,7 +17,9 @@ const UploadImage = ({
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "frases_wed_belen");
+
+      // ⭐ NUEVO PRESET QUE CREAMOS
+      formData.append("upload_preset", "frases_web_public");
 
       setDebug("Enviando a Cloudinary...");
 
