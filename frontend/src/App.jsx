@@ -51,25 +51,30 @@ function App() {
 
   // Cargar fondo y galería desde backend
   useEffect(() => {
-    async function loadData() {
-      try {
-        const [bgRes, galRes] = await Promise.all([
-          fetch(`${API_BASE}/background`).then((r) => r.json()),
-          fetch(`${API_BASE}/gallery`).then((r) => r.json()),
-        ]);
+  async function loadData() {
+    try {
+      const [bgRes, galRes] = await Promise.all([
+        fetch(`${API_BASE}/api/fondo`).then((r) => r.json()),
+        fetch(`${API_BASE}/api/imagenes`).then((r) => r.json()),
+      ]);
 
-        if (bgRes?.url) {
-          document.querySelector(".app").style.backgroundImage = `url(${bgRes.url})`;
-        }
-        if (galRes?.images) {
-          setExtraFotos(galRes.images);
-        }
-      } finally {
-        setIsLoading(false);
+      // Fondo
+      if (bgRes?.url) {
+        document.querySelector(".app").style.backgroundImage = `url(${bgRes.url})`;
       }
+
+      // Galería
+      if (Array.isArray(galRes)) {
+        setExtraFotos(galRes.map((img) => img.url));
+      }
+
+    } finally {
+      setIsLoading(false);
     }
-    loadData();
-  }, []);
+  }
+
+  loadData();
+}, []);
 
   const mostrarFraseAleatoria = () => {
     const indice = Math.floor(Math.random() * frases.length);
