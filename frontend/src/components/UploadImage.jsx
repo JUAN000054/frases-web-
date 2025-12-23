@@ -7,19 +7,20 @@ const UploadImage = ({
 
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [debug, setDebug] = useState("");
 
   const handleUpload = async () => {
     if (!file) return alert("Selecciona una imagen primero");
     setLoading(true);
+    setDebug("Iniciando subida...");
 
     try {
-      console.log("📤 Subiendo a Cloudinary...");
-
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "frases_wed_belen");
 
-      // Subida a Cloudinary usando fetch
+      setDebug("Enviando a Cloudinary...");
+
       const cloudinaryRes = await fetch(
         "https://api.cloudinary.com/v1_1/duvquzl9n/image/upload",
         {
@@ -28,16 +29,28 @@ const UploadImage = ({
         }
       );
 
-      const data = await cloudinaryRes.json();
-      console.log("Cloudinary respondió:", data);
+      setDebug(`Estado HTTP: ${cloudinaryRes.status}`);
+
+      const text = await cloudinaryRes.text();
+      setDebug(prev => prev + "\nRespuesta Cloudinary:\n" + text);
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        alert("Cloudinary devolvió algo que no es JSON");
+        return;
+      }
 
       if (!data.secure_url) {
-        throw new Error("Cloudinary no devolvió secure_url");
+        alert("Cloudinary no devolvió secure_url");
+        return;
       }
 
       const imageUrl = data.secure_url;
 
-      // Guardar en tu backend
+      setDebug(prev => prev + "\nURL generada:\n" + imageUrl);
+
       if (type === "galeria") {
         await fetch(`${backendUrl}/api/imagenes`, {
           method: "POST",
@@ -56,7 +69,7 @@ const UploadImage = ({
       setFile(null);
 
     } catch (err) {
-      console.error("❌ Error:", err);
+      setDebug("Error general:\n" + err.toString());
       alert("Error al subir la imagen");
     } finally {
       setLoading(false);
@@ -73,6 +86,20 @@ const UploadImage = ({
       <button onClick={handleUpload} disabled={loading}>
         {loading ? "Subiendo..." : "Subir imagen"}
       </button>
+
+      {debug && (
+        <pre
+          style={{
+            whiteSpace: "pre-wrap",
+            background: "#eee",
+            padding: "10px",
+            marginTop: "10px",
+            borderRadius: "6px"
+          }}
+        >
+          {debug}
+        </pre>
+      )}
     </div>
   );
 };
