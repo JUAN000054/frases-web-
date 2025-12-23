@@ -31,7 +31,7 @@ function App() {
   const [showLetter, setShowLetter] = useState(false);
   const [indiceFrase, setIndiceFrase] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState(null);
+  const [currentSrc, setCurrentSrc] = useState("/foto17_angel.mp3");
   const [fullscreenImg, setFullscreenImg] = useState(null);
 
   // Ajustes
@@ -41,12 +41,12 @@ function App() {
   const frases = [
     "HAGAMOS QUE ESTO FUNCIONE Y NO POR QUE SEA FACIL EHH, SINO POR QUE VALE LA PENA 💘",
     "Tu sonrisa es la calma para mis tormentas ✨",
-    "Eres mi razón de ser 💕",
+    "la bendicion mas hermosa que dios me brindo fue la de haberte conocido 💕",
     "Cada momento contigo es algo unico e inolvidable 🎁",
     "Te amo más de lo que las palabras puedan expresar 💖",
     "Eres mi sueño hecho realidad 🌙",
     "Contigo todo es magia ✨",
-    "Eres mi refugio y mi alegría 🌹",
+    "Eres esa persona con la cual quiero sentarme un domingo a la mañana a tomar mate viendo la lluvia caer  🌹",
     "Cada latido me recuerda que te amo 💘"
   ];
 
@@ -174,17 +174,42 @@ function App() {
       </button>
 
       {showLetter && (
-        <div className="carta-container">
-          <div className="carta">
-            <h2>Para vos, mi amor 💖</h2>
-            <p>
-              Hay momentos de la vida que llega como un rayo y lo cambia todo en un instante...
-              {/* Aquí va tu carta completa */}
-            </p>
-            <p className="firma">Con todo el amor del mundo, Juan ✨</p>
-          </div>
-        </div>
-      )}
+  <div className="carta-container">
+    <div className="carta">
+      <h2>Para vos, mi amor 💖</h2>
+
+      <p>Mi amor,</p>
+
+      <p>
+        No sé en qué lugar del mundo estás ahora ni qué estás sintiendo, pero aun así quiero dejarte estas palabras con la calma y el respeto que vos merecés.
+      </p>
+
+      <p>
+        No escribo para presionarte, ni para pedirte nada, ni para que tomes una decisión. Escribo porque lo que siento por vos es real, y lo real no desaparece solo porque haya silencio.
+      </p>
+
+      <p>
+        Quiero que sepas que te pienso con cariño, con admiración y con una gratitud enorme por todo lo que despertaste en mí. Vos fuiste luz en días donde yo ni sabía que necesitaba una. Y aunque hoy no estemos hablando, nada de lo que viví con vos pierde valor.
+      </p>
+
+      <p>
+        No te escribo desde la necesidad, sino desde la verdad: te quiero de una manera tranquila, de una manera que no exige, de una manera que solo desea tu bienestar, incluso si ese bienestar no me incluye por ahora.
+      </p>
+
+      <p>
+        Si algún día volvemos a encontrarnos, quiero que sea desde la libertad, desde la paz, desde la versión más linda de vos y de mí. Y si no, igual me quedo con lo hermoso que dejaste en mi vida.
+      </p>
+
+      <p>
+        No sé qué va a pasar mañana, pero sí sé que lo que siento por vos es limpio, sincero y profundo. Y eso, pase lo que pase, siempre va a ser algo bueno.
+      </p>
+
+      <p>Con todo mi cariño,<br/>Juan</p>
+
+      <p className="firma">Con todo el amor del mundo, Juan ✨</p>
+    </div>
+  </div>
+)}
 
       <button className="btn" onClick={() => setShowGallery(!showGallery)}>
         {showGallery ? "Cerrar álbum secreto 📁" : "Abrir álbum secreto 📁"}
