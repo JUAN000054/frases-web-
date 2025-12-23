@@ -65,15 +65,15 @@ app.post("/api/imagenes", async (req, res) => {
 // Obtener fondo actual (crea uno vacío si no existe)
 app.get("/api/fondo", async (req, res) => {
   try {
-    let fondo = await Background.findOne().sort({ updatedAt: -1 });
+    let fondo = await Background.findOne();
 
-    // Si no existe, lo creamos vacío
     if (!fondo) {
       fondo = await Background.create({ url: "" });
     }
 
     res.json(fondo);
   } catch (err) {
+    console.error("Error en GET /api/fondo:", err);
     res.status(500).json({ error: "Error al obtener fondo" });
   }
 });
